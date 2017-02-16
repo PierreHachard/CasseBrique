@@ -49,8 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Brique.cs" />
-    <Compile Include="RectangleGraphique.cs" />
+    <Compile Include="Barre.cs" />
+    <Compile Include="Brick.cs" />
+    <Compile Include="Niveau.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
