@@ -55,14 +55,15 @@
     <Compile Include="Accueil.Designer.cs">
       <DependentUpon>Accueil.cs</DependentUpon>
     </Compile>
-    <Compile Include="Brique.cs" />
+    <Compile Include="Barre.cs" />
+    <Compile Include="Brick.cs" />
     <Compile Include="Jeu.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Jeu.Designer.cs">
       <DependentUpon>Jeu.cs</DependentUpon>
     </Compile>
-    <Compile Include="RectangleGraphique.cs" />
+    <Compile Include="Niveau.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Accueil.resx">
