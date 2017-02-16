@@ -1,9 +1,16 @@
 ﻿using System;
 using System.Windows.Shapes;
 
-public class RectangleGraphique : Rectangle
+public class Brick
 {
-	public RectangleGrapgique()
+    private Rectangle brique;
+    private int hp;
+
+	public Brick( Rectangle rec, int resistance)
 	{
+        this.brique = rec;
+        this.hp = resistance;
 	}
+
+
 }
