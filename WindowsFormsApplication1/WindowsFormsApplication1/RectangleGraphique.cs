@@ -3,14 +3,14 @@ using System.Windows.Shapes;
 
 public class Brick
 {
-    private Rectangle brique;
+    /*private Rectangle rectangle = new;
     private int hp;
 
 	public Brick( Rectangle rec, int resistance)
 	{
-        this.brique = rec;
+        this.rectangle = rec;
         this.hp = resistance;
-	}
+	}*/
 
 
 }
