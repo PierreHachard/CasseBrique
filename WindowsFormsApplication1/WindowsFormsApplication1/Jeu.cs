@@ -48,8 +48,10 @@ namespace WindowsFormsApplication1
         {
             Graphics g;
             g = this.CreateGraphics();
+            g.Clip = new Region(new Rectangle(0, 580, 680, 15));
             this.barre.deplacerBarre(e.X, e.Y);
             this.barre.dessinerBarre(g);
+            g.Dispose();
             //Refresh();
             
         }

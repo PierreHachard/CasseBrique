@@ -20,7 +20,7 @@ public class Barre
 
     public void dessinerBarre(Graphics g)
     {
-        //this.gBarre.Clear(Color.White);
+        g.Clear(Color.White);
         g.FillRectangle(new SolidBrush(Color.Black), this.positionX, positionY, this.longueur, largeur);
         
     }
