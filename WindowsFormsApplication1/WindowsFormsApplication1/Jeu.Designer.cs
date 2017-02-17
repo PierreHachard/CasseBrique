@@ -34,11 +34,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(538, 650);
+            this.ClientSize = new System.Drawing.Size(494, 641);
             this.Name = "Jeu";
             this.Text = "Jeu";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Jeu_FormClosed);
             this.Load += new System.EventHandler(this.Jeu_Load);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Jeu_MouseMove);
             this.ResumeLayout(false);
 
         }

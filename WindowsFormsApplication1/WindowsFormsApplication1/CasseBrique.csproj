@@ -57,6 +57,7 @@
     </Compile>
     <Compile Include="Barre.cs" />
     <Compile Include="Brick.cs" />
+    <Compile Include="Balle.cs" />
     <Compile Include="Jeu.cs">
       <SubType>Form</SubType>
     </Compile>
