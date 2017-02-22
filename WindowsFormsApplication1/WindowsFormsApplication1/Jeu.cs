@@ -41,19 +41,47 @@ namespace WindowsFormsApplication1
             base.OnPaint(e);
             this.barre.dessinerBarre(e.Graphics);
             this.niveau1.dessinerNiveau(e.Graphics);
-            this.balle.dessinerBall(e.Graphics);
+            this.balle.dessinerBalle(e.Graphics);
         }
 
         private void Jeu_MouseMove(object sender, MouseEventArgs e)
         {
+
+            // enleève le curseur 
+            Cursor.Current = null;
             Graphics g;
             g = this.CreateGraphics();
-            g.Clip = new Region(new Rectangle(0, 580, 680, 15));
-            this.barre.deplacerBarre(e.X, e.Y);
+            // met à jour la position de la barre
+            g.Clip = new Region(new Rectangle(barre.PositionX, 580, barre.Longueur, 15));
+            this.barre.deplacerBarre(e.X - 30, e.Y);
+            g.Clear(Color.White);
             this.barre.dessinerBarre(g);
             g.Dispose();
             //Refresh();
             
+        }
+
+        private void mouvementBalle_Tick(object sender, EventArgs e)
+        {
+
+            Graphics p;
+            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
+            path.AddEllipse(balle.PositionX, balle.PositionY,12,12);
+            p = this.CreateGraphics();
+             // met à jour la position de la balle
+            p.Clip = new Region(path);
+            p.Clear(Color.White);
+            this.balle.deplacerBalle();
+            path.Reset();
+            path.AddEllipse(balle.PositionX, balle.PositionY, 12, 12);
+            p.Clip = new Region(path);
+            this.balle.dessinerBalle(p);
+            p.Dispose();
+        }
+
+        private void Jeu_MouseClick(object sender, MouseEventArgs e)
+        {
+            mouvementBalle.Enabled = true;
         }
     }
 }
