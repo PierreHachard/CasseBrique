@@ -10,8 +10,9 @@ namespace WindowsFormsApplication1
     // Cette classe contient tous les différents niveaux avec le positionnement des briques.
     public class Niveau
     {
-        private Brick[,] listeBrick = new Brick[3,25];
+        private Brick[,] listeBrick = new Brick[3, 25];
         private int numeroNiveau;
+        public Brick[,] ListeBrick { get { return listeBrick; } }
 
         public Niveau(int niveau)
         {
@@ -70,6 +71,9 @@ namespace WindowsFormsApplication1
                 b.dessinerBrick(g);
             }
         }
+
+
+
 
 
     }

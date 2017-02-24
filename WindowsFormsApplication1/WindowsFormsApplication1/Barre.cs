@@ -8,8 +8,10 @@ public class Barre
     public const int largeur = 15;
     private int positionX;
     public const int positionY  = 580;
-    public int Longueur { get { return longueur; } set { longueur = value; } }
-    public int PositionX { get { return positionX; } set { positionX = value; } }
+    public int PositionX { get { return positionX; } }
+    public int PositionY { get { return positionY; } }
+    public int Longueur { get { return longueur; } }
+    public int Largeur { get { return largeur; } }
     //public Graphics gBarre;
 
     public Barre(int x, int longueur)
