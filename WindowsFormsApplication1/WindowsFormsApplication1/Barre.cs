@@ -5,11 +5,14 @@ using System.Drawing;
 public class Barre
 {
     private int longueur;
-    public static int largeur = 15;
+    public const int largeur = 15;
     private int positionX;
-    public static int positionY  = 500;
-    public int Longueur { get; set; }
-    public int PositionY { get; set; }
+    public const int positionY  = 580;
+    public int PositionX { get { return positionX; } }
+    public int PositionY { get { return positionY; } }
+    public int Longueur { get { return longueur; } }
+    public int Largeur { get { return largeur; } }
+    //public Graphics gBarre;
 
     public Barre(int x, int longueur)
     {
@@ -19,7 +22,18 @@ public class Barre
 
     public void dessinerBarre(Graphics g)
     {
+        g.Clear(Color.White);
         g.FillRectangle(new SolidBrush(Color.Black), this.positionX, positionY, this.longueur, largeur);
+    }
+
+    public void deplacerBarre(int sourisX, int sourisY)
+    {
+        this.positionX = sourisX;
+        if (sourisX < 0)
+            this.positionX = 0;
+        else if (sourisX > 440)
+            this.positionX = 440;
+
     }
 
 
