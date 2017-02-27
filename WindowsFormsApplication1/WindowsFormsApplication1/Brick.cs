@@ -13,12 +13,22 @@ public class Brick
     public int Longueur { get { return longueur; } }
     public int Largeur { get { return largeur; } }
     private int resistance;
+    private System.Drawing.Rectangle rect;
+    public System.Drawing.Rectangle Rect
+    {
+        get
+        {
+            return rect;
+        }
+    }
+
 
     public Brick(int x, int y, int resistance)
     {
         this.positionY = y;
         this.positionX = x;
         this.resistance = resistance;
+        rect = new System.Drawing.Rectangle (positionX, positionY, longueur, largeur);
     }
 
     public void dessinerBrick(Graphics g)
@@ -42,7 +52,9 @@ public class Brick
         else if (this.resistance == 3)
             g.FillRectangle(new SolidBrush(Color.Blue), this.positionX, this.positionY, longueur, largeur);
         else if (this.resistance == 0)
+        {
             g.Clear(Color.White);
+        }
         g.DrawRectangle(new Pen(Color.Black, 1), this.positionX - 1, this.positionY - 1, longueur + 1, largeur + 1);
     }
 }

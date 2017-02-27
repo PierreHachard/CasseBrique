@@ -32,6 +32,7 @@ namespace WindowsFormsApplication1
 
         public void dessinerBalle(Graphics g)
         {
+
             g.FillEllipse(new SolidBrush(Color.DarkBlue), this.positionX, this.positionY, longueur, largeur);
         }
 
@@ -43,7 +44,7 @@ namespace WindowsFormsApplication1
                 compteurX = 0;
                 this.positionX += 5;
             }
-            if (this.positionX >= 490 || compteurX == 1 || collision == 3) // vers la gauche
+            else if (this.positionX >= 490 || compteurX == 1 || collision == 3) // vers la gauche
             {
                 compteurX = 1;
                 this.positionX -= 5;
@@ -53,7 +54,7 @@ namespace WindowsFormsApplication1
                 compteurY = 0;
                 this.positionY -= 5;
             }
-            if (this.positionY < 0  || compteurY == 1 || collision == 2) // vers le bas
+            else if (this.positionY < 0  || compteurY == 1 || collision == 2) // vers le bas
             {
                 compteurY = 1;
                 this.positionY += 5;

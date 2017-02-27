@@ -13,19 +13,20 @@ namespace WindowsFormsApplication1
     public partial class Jeu : Form
     {
         private Niveau niveau1;
-        //private Barre barre;
-        private Barre2 barre;
-        private Balle balle;
+        private Barre barre;
+        private Boule balle;
         private Accueil accueil;
+        private Graphics p;
+
         public Jeu(Accueil accueil)
         {
             InitializeComponent();
             this.accueil = accueil;
             this.accueil.Visible = false;
             niveau1 = new Niveau(1);
-            //barre = new Barre(230, 60);
-            barre = new Barre2(new Point(100,100));
-            balle = new Balle();
+            barre = new Barre(230, 60);
+            balle = new Boule(new Point(265,565));
+            p = this.CreateGraphics();
         }
 
         private void Jeu_Load(object sender, EventArgs e)
@@ -41,14 +42,14 @@ namespace WindowsFormsApplication1
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            //this.barre.dessinerBarre(e.Graphics);
+            this.barre.dessinerBarre(e.Graphics);
             this.niveau1.dessinerNiveau(e.Graphics);
             this.balle.dessinerBalle(e.Graphics);
         }
 
         private void Jeu_MouseMove(object sender, MouseEventArgs e)
         {
-            /*
+
             // enleève le curseur 
             Cursor.Current = null;
             Graphics g;
@@ -60,27 +61,22 @@ namespace WindowsFormsApplication1
             this.barre.dessinerBarre(g);
             g.Dispose();
             //Refresh();
-             * */
-            Cursor.Current = null;
             
         }
 
         private void mouvementBalle_Tick(object sender, EventArgs e)
         {
             // efface la balle précédente et la redessine à sa nouvelle position
-            Graphics p;
             System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
-            path.AddEllipse(balle.PositionX, balle.PositionY,balle.Longueur,balle.Largeur);
-            p = this.CreateGraphics();
+            path.AddEllipse(balle.Centre.X - Boule.diametre / 2, balle.Centre.Y - Boule.diametre / 2, Boule.diametre, Boule.diametre);
              // met à jour la position de la balle
             p.Clip = new Region(path);
             p.Clear(Color.White);
             this.balle.deplacerBalle(collision(balle));
-            path.Reset();
-            path.AddEllipse(balle.PositionX, balle.PositionY, balle.Longueur, balle.Largeur);
-            p.Clip = new Region(path);
-            this.balle.dessinerBalle(p);
-            p.Dispose();
+             path.Reset();
+             path.AddEllipse(balle.Centre.X - Boule.diametre / 2, balle.Centre.Y - Boule.diametre / 2, Boule.diametre, Boule.diametre);
+             p.Clip = new Region(path);
+             this.balle.dessinerBalle(p);
         }
 
         private void Jeu_MouseClick(object sender, MouseEventArgs e)
@@ -92,47 +88,81 @@ namespace WindowsFormsApplication1
         //                   2 si tape le bas
         //                   3 si tape la gauche
         //                   4 si tape la droite
-        private int collision( Balle balle)
+        private int collision( Boule balle)
         {
+            int i = 0;
             foreach (Brick b in niveau1.ListeBrick)
             {
                 if (b != null) {
-                   if (balle.PositionY + balle.Largeur == b.PositionY && (balle.PositionX + balle.Largeur / 2 <= b.PositionX + b.Longueur && balle.PositionX + balle.Largeur / 2 >= b.PositionX))
+                    i++;
+                    /* if ((balle.Centre.Y + Boule.diametre/2 <= b.PositionY + 2 && balle.Centre.Y + Boule.diametre / 2 >= b.PositionY - 2) && (balle.Centre.X - Boule.diametre / 2 <= b.PositionX + b.Longueur && balle.Centre.X + Boule.diametre/2 >= b.PositionX))
+                      {
+                         Graphics g;
+                          g = this.CreateGraphics();
+                          g.Clip = new Region( new Rectangle(b.PositionX -1 , b.PositionY-1, b.Longueur+1,b.Largeur+1));
+                          b.redessinerBrick(g);
+                          g.Dispose();
+                          return 1; // vers le haut
+                      }
+                       if ((balle.Centre.Y + Boule.diametre / 2 <= b.PositionY + b.Largeur  + 2 && balle.Centre.Y + Boule.diametre / 2 >= b.PositionY + b.Largeur - 2) && (balle.Centre.X - Boule.diametre / 2 <= b.PositionX + b.Longueur && balle.Centre.X + Boule.diametre + Boule.diametre / 2 >= b.PositionX))
+                      {
+                          Graphics g;
+                          g = this.CreateGraphics();
+                          g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 1, b.Largeur + 1));
+                          b.redessinerBrick(g);
+                          g.Dispose();
+                          return 2; // vers le bas
+                      }
+                       if ((balle.Centre.X + Boule.diametre / 2 <= b.PositionX + 2 && balle.Centre.X + Boule.diametre / 2 >= b.PositionX - 2) && (balle.Centre.Y + Boule.diametre / 2 >= b.PositionY && balle.Centre.Y - Boule.diametre/2 <= b.PositionY + b.Largeur))
+                      {
+                         Graphics g;
+                          g = this.CreateGraphics();
+                          g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 1, b.Largeur + 1));
+                          b.redessinerBrick(g);
+                          g.Dispose();
+                          return 3; // vers la gauche
+                      }
+                      if ((balle.Centre.X + Boule.diametre / 2 <= b.PositionX + b.Largeur + 2 && balle.Centre.X + Boule.diametre / 2 >= b.PositionY + b.Largeur - 2) && (balle.Centre.Y + Boule.diametre / 2 >= b.PositionY && balle.Centre.Y - Boule.diametre / 2 <= b.PositionY + b.Largeur))
+                      {
+                          Graphics g;
+                          g = this.CreateGraphics();
+                          g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 1, b.Largeur + 1));
+                          b.redessinerBrick(g);
+                          g.Dispose();
+                          return 4; // vers la droite
+                      }*/
+
+                    Graphics g;
+                    g = this.CreateGraphics();
+                    if (b.Rect.Contains(new Point(balle.Centre.X + Boule.diametre / 2,balle.Centre.Y)))
                     {
-                        Graphics g;
-                        g = this.CreateGraphics();
-                        g.Clip = new Region( new Rectangle(b.PositionX , b.PositionY, b.Longueur,b.Largeur));
-                        b.redessinerBrick(g);
-                        g.Dispose();
-                        return 1;
-                    }
-                     if (balle.PositionY == b.PositionY + b.Largeur && (balle.PositionX <= b.PositionX + b.Longueur && balle.PositionX >= b.PositionX))
-                    {
-                        Graphics g;
-                        g = this.CreateGraphics();
-                        g.Clip = new Region(new Rectangle(b.PositionX, b.PositionY, b.Longueur, b.Largeur));
-                        b.redessinerBrick(g);
-                        g.Dispose();
-                        return 2;
-                    }
-                     if (balle.PositionX + balle.Largeur == b.PositionX && (balle.PositionY + balle.Largeur / 2 >= b.PositionY && balle.PositionY + balle.Largeur / 2 <= b.PositionY + b.Largeur))
-                    {
-                        Graphics g;
-                        g = this.CreateGraphics();
-                        g.Clip = new Region(new Rectangle(b.PositionX, b.PositionY, b.Longueur, b.Largeur));
+                        g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 1, b.Largeur + 1));
                         b.redessinerBrick(g);
                         g.Dispose();
                         return 3;
                     }
-                    if (balle.PositionX == b.PositionX + b.Longueur && (balle.PositionY + balle.Largeur/2 >= b.PositionY && balle.PositionY + b.Largeur / 2 <= b.PositionY + b.Largeur))
+                    else if (b.Rect.Contains(new Point(balle.Centre.X - Boule.diametre / 2, balle.Centre.Y)))
                     {
-                        Graphics g;
-                        g = this.CreateGraphics();
-                        g.Clip = new Region(new Rectangle(b.PositionX, b.PositionY, b.Longueur, b.Largeur));
+                        g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 1, b.Largeur + 1));
                         b.redessinerBrick(g);
                         g.Dispose();
                         return 4;
                     }
+                    else if (b.Rect.Contains(new Point(balle.Centre.X, balle.Centre.Y - Boule.diametre / 2)))
+                    {
+                        g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 1, b.Largeur + 1));
+                        b.redessinerBrick(g);
+                        g.Dispose();
+                        return 2;
+                    }
+                    else if (b.Rect.Contains(new Point(balle.Centre.X, balle.Centre.Y + Boule.diametre / 2)))
+                    {
+                        g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 1, b.Largeur + 1));
+                        b.redessinerBrick(g);
+                        g.Dispose();
+                        return 1;
+                    }
+
 
                 }
             }
