@@ -22,7 +22,8 @@ namespace WindowsFormsApplication1
 
         private void Accueil_Load(object sender, EventArgs e)
         {
-
+            Jeu formJeu = new Jeu(this);
+            formJeu.Show(); 
         }
 
         private void btnConnexion_Click(object sender, EventArgs e)
@@ -39,8 +40,8 @@ namespace WindowsFormsApplication1
             else if (vm_user.IsInBdd(nomCompte.Text, password.Text) == true)
             {
                 //si il a pu se connecter
-                Jeu formJeu = new Jeu(this);
-                formJeu.Show(); 
+               // Jeu formJeu = new Jeu(this);
+                //formJeu.Show(); 
             }
             else
             {

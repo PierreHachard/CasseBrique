@@ -12,7 +12,7 @@ namespace WindowsFormsApplication1
     {
         private Brick[,] listeBrick = new Brick[3, 25];
         private int numeroNiveau;
-        public Brick[,] ListeBrick { get { return listeBrick; } }
+        public Brick[,] ListeBrick { get { return listeBrick;  } }
 
         public Niveau(int niveau)
         {
@@ -72,9 +72,8 @@ namespace WindowsFormsApplication1
             }
         }
 
-
-
-
+        public void setList(int i, int j, Brick b)
+        { listeBrick[i, j] = b; }
 
     }
 }
