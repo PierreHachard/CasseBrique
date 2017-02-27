@@ -13,7 +13,8 @@ namespace WindowsFormsApplication1
     public partial class Jeu : Form
     {
         private Niveau niveau1;
-        private Barre barre;
+        //private Barre barre;
+        private Barre2 barre;
         private Balle balle;
         private Accueil accueil;
         public Jeu(Accueil accueil)
@@ -22,7 +23,8 @@ namespace WindowsFormsApplication1
             this.accueil = accueil;
             this.accueil.Visible = false;
             niveau1 = new Niveau(1);
-            barre = new Barre(230, 60);
+            //barre = new Barre(230, 60);
+            barre = new Barre2(new Point(100,100));
             balle = new Balle();
         }
 
@@ -39,14 +41,14 @@ namespace WindowsFormsApplication1
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            this.barre.dessinerBarre(e.Graphics);
+            //this.barre.dessinerBarre(e.Graphics);
             this.niveau1.dessinerNiveau(e.Graphics);
             this.balle.dessinerBalle(e.Graphics);
         }
 
         private void Jeu_MouseMove(object sender, MouseEventArgs e)
         {
-
+            /*
             // enleève le curseur 
             Cursor.Current = null;
             Graphics g;
@@ -58,6 +60,8 @@ namespace WindowsFormsApplication1
             this.barre.dessinerBarre(g);
             g.Dispose();
             //Refresh();
+             * */
+            Cursor.Current = null;
             
         }
 

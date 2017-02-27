@@ -18,9 +18,6 @@ namespace WindowsFormsApplication1.ViewModel
         public List<Model_User> GetUsers()
         {
             Dal dal = new Dal();
-            /*List<Model_User> users = new List<Model_User>;
-            users = dal.GetUsers();
-            return users;*/
             return dal.GetUsers();
         }
         
