@@ -13,10 +13,12 @@ namespace CasseBrique
     public partial class Jeu : Form
     {
         private Niveau niveau1;
-        private Barre barre;
+        //private Barre barre;
         private Boule balle;
         private Accueil accueil;
         private Graphics p;
+
+        private Plateau plateau;
 
         public Jeu(Accueil accueil)
         {
@@ -24,10 +26,24 @@ namespace CasseBrique
             this.accueil = accueil;
             this.accueil.Visible = false;
             niveau1 = new Niveau(1);
-            barre = new Barre(230, 60);
+            //barre = new Barre(230, 60);
+            plateau = new Plateau(230, 60, 100, this.Bottom - this.Bottom / 10);
             balle = new Boule(new Point(265,565));
             p = this.CreateGraphics();
+
+            this.testPlateau = new Plateau();
+            ((System.ComponentModel.ISupportInitialize)(this.testPlateau)).BeginInit();
+            // 
+            // testPlateau
+            // 
+            this.testPlateau.BackColor = System.Drawing.Color.DarkGray;
+            this.testPlateau.Location = new System.Drawing.Point(115, 579);
+            this.testPlateau.Name = "testPlateau";
+            this.testPlateau.Size = new System.Drawing.Size(262, 16);
+            this.testPlateau.TabIndex = 0;
+            this.testPlateau.TabStop = false;
         }
+
 
         private void Jeu_Load(object sender, EventArgs e)
         {
@@ -42,14 +58,14 @@ namespace CasseBrique
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            this.barre.dessinerBarre(e.Graphics);
+            //this.barre.dessinerBarre(e.Graphics);
             this.niveau1.dessinerNiveau(e.Graphics);
             this.balle.dessinerBalle(e.Graphics);
         }
 
         private void Jeu_MouseMove(object sender, MouseEventArgs e)
         {
-
+            /*
             // enleève le curseur 
             Cursor.Current = null;
             Graphics g;
@@ -60,7 +76,7 @@ namespace CasseBrique
             g.Clear(Color.White);
             this.barre.dessinerBarre(g);
             g.Dispose();
-            //Refresh();
+            //Refresh();*/
             
         }
 
