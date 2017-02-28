@@ -50,8 +50,6 @@ public class Brick
             g.FillRectangle(new SolidBrush(Color.Red), this.positionX, this.positionY, longueur, largeur);
         else if (this.resistance == 2)
             g.FillRectangle(new SolidBrush(Color.Green), this.positionX, this.positionY, longueur, largeur);
-        else if (this.resistance == 3)
-            g.FillRectangle(new SolidBrush(Color.Blue), this.positionX, this.positionY, longueur, largeur);
         else if (this.resistance == 0)
         {
             g.Clear(Color.White);
