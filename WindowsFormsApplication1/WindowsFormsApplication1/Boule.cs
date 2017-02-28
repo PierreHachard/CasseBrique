@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
-namespace WindowsFormsApplication1
+namespace CasseBrique
 {
     class Boule
     {

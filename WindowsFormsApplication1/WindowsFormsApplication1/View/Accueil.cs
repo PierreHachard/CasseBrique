@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 
-using WindowsFormsApplication1.ViewModel;
+using CasseBrique.ViewModel;
 
-namespace WindowsFormsApplication1
+namespace CasseBrique
 {
     public partial class Accueil : Form
     {
