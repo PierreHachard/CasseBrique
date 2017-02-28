@@ -54,22 +54,22 @@ namespace CasseBrique
         public void deplacerBalle(int collision)
         {
 
-            if (Centre.X < 2 || compteurX == 0 || collision == 4) // vers la droite
+            if (Centre.X < 2 || (compteurX == 0 && collision ==0) || collision == 4) // vers la droite
             {
                 compteurX = 0;
                 Centre =  new Point(this.centre.X + 5, this.centre.Y);
             }
-            if (Centre.X >= 490 || compteurX == 1 || collision == 3) // vers la gauche
+            if (Centre.X >= 490 || (compteurX == 1 && collision ==0) || collision == 3) // vers la gauche
             {
                 compteurX = 1;
                 Centre = new Point(this.centre.X - 5, this.centre.Y);
             }
-            if (this.centre.Y >= 600 || compteurY == 0 || collision == 1 || collision == 5) // vers le haut
+            if (this.centre.Y >= 600 || (compteurY == 0 && collision ==0) || collision == 1 || collision == 5) // vers le haut
             {
                 compteurY = 0;
-                Centre = new Point(this.centre.X, this.centre.Y-5);
+                Centre = new Point(this.centre.X, this.centre.Y - 5);
             }
-            if (this.centre.Y < 0 || compteurY == 1 || collision == 2) // vers le bas
+            if (this.centre.Y < 0 || (compteurY == 1 && collision ==0) || collision == 2) // vers le bas
             {
                 compteurY = 1;
                 Centre = new Point(this.centre.X, this.centre.Y + 5);

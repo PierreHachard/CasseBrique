@@ -10,7 +10,6 @@ namespace CasseBrique
     class Boule
     {
         public static int diametre = 12;
-        private PictureBoule formeGraphique;
         private Point centre;
         public int compteurX = 0;
         public int compteurY = 0;

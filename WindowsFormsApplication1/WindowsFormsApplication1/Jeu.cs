@@ -27,7 +27,7 @@ namespace CasseBrique
             balle.Size = new System.Drawing.Size(12, 12);
 
             //La barre
-            pictureBarre1.Location = new System.Drawing.Point(265,580); //x,y
+            pictureBarre1.Location = new System.Drawing.Point(265, 580); //x,y
             pictureBarre1.Name = "pictureBarre1";
             pictureBarre1.Size = new System.Drawing.Size(50, 15);
             pictureBarre1.Centre = new System.Drawing.Point(265, 580);
@@ -36,8 +36,7 @@ namespace CasseBrique
             this.accueil = accueil;
             this.accueil.Visible = false;
             niveau1 = new Niveau(1);
-            //barre = new Barre(230, 60);
-            p = this.CreateGraphics();
+            barre = new Barre(230, 60);
         }
 
         private void Jeu_Load(object sender, EventArgs e)
@@ -73,12 +72,12 @@ namespace CasseBrique
             //Refresh();*/
             Cursor.Current = null;
             pictureBarre1.deplacerBarre(e.X, this);
-            
+
         }
 
         private void mouvementBalle_Tick(object sender, EventArgs e)
         {
-            balle.deplacerBalle(collision(balle,1));
+            balle.deplacerBalle(collision(balle, 1));
         }
 
         private void Jeu_MouseClick(object sender, MouseEventArgs e)
@@ -90,7 +89,7 @@ namespace CasseBrique
         //                   2 si tape le bas
         //                   3 si tape la gauche
         //                   4 si tape la droite
-        private int collision( PictureBoule balle, int niveau)
+        private int collision(PictureBoule balle, int niveau)
         {
             int i = 0;
             niveau -= 1;
@@ -98,11 +97,11 @@ namespace CasseBrique
             for (i = 0; i < 25; i++)
             {
                 b = niveau1.ListeBrick[niveau, i];
-                if (b!= null)
+                if (b != null)
                 {
                     Graphics g;
                     g = this.CreateGraphics();
-                    if (b.Rect.Contains(new Point(balle.Centre.X + Boule.diametre / 2, balle.Centre.Y)))
+                    if (b.Rect.Contains(new Point(balle.Centre.X + balle.Width / 2, balle.Centre.Y)))
                     {
                         g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 2, b.Largeur + 2));
                         b.redessinerBrick(g);
@@ -111,7 +110,7 @@ namespace CasseBrique
                         g.Dispose();
                         return 3;
                     }
-                    else if (b.Rect.Contains(new Point(balle.Centre.X - Boule.diametre / 2, balle.Centre.Y)))
+                    else if (b.Rect.Contains(new Point(balle.Centre.X - 6, balle.Centre.Y)))
                     {
                         g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 2, b.Largeur + 2));
                         b.redessinerBrick(g);
@@ -120,7 +119,7 @@ namespace CasseBrique
                         g.Dispose();
                         return 4;
                     }
-                    else if (b.Rect.Contains(new Point(balle.Centre.X, balle.Centre.Y - Boule.diametre / 2)))
+                    else if (b.Rect.Contains(new Point(balle.Centre.X, balle.Centre.Y - 6)))
                     {
                         g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 2, b.Largeur + 2));
                         b.redessinerBrick(g);
@@ -129,7 +128,7 @@ namespace CasseBrique
                         g.Dispose();
                         return 2;
                     }
-                    else if (b.Rect.Contains(new Point(balle.Centre.X, balle.Centre.Y + Boule.diametre / 2)))
+                    else if (b.Rect.Contains(new Point(balle.Centre.X, balle.Centre.Y + 6)))
                     {
                         g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 2, b.Largeur + 2));
                         b.redessinerBrick(g);
@@ -140,18 +139,13 @@ namespace CasseBrique
                     }
                 }
             }
-            /*if (barre.Rect.Contains(new Point(balle.Centre.X, balle.Centre.Y + Boule.diametre / 2)))
+            if (barre.Rect.Contains(new Point(balle.Centre.X, balle.Centre.Y + balle.Width / 2)))
             {
                 return 5;
-            }*/
+            }
             //if (pictureBarre1.Contains(new Point(balle.Centre.X, balle.Centre.Y + Boule.diametre / 2)))
-              //  return 5;
+            //  return 5;
             return 0;
-        }
-
-        private void ovalPictureBox1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
