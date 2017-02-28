@@ -13,7 +13,7 @@ namespace CasseBrique
     public partial class Jeu : Form
     {
         private Niveau niveau1;
-        private Barre barre;
+        //private Barre barre;
         private Accueil accueil;
         private Graphics p;
 
@@ -21,17 +21,22 @@ namespace CasseBrique
         {
             InitializeComponent();
 
+            //La balle
             balle.Location = new System.Drawing.Point(265, 565);
             balle.Name = "pictureBoule1";
             balle.Size = new System.Drawing.Size(12, 12);
-            balle.TabIndex = 0;
-            balle.TabStop = false;
+
+            //La barre
+            pictureBarre1.Location = new System.Drawing.Point(265,580); //x,y
+            pictureBarre1.Name = "pictureBarre1";
+            pictureBarre1.Size = new System.Drawing.Size(50, 15);
+            pictureBarre1.Centre = new System.Drawing.Point(265, 580);
 
 
             this.accueil = accueil;
             this.accueil.Visible = false;
             niveau1 = new Niveau(1);
-            barre = new Barre(230, 60);
+            //barre = new Barre(230, 60);
             p = this.CreateGraphics();
         }
 
@@ -48,7 +53,7 @@ namespace CasseBrique
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            this.barre.dessinerBarre(e.Graphics);
+            //this.barre.dessinerBarre(e.Graphics);
             this.niveau1.dessinerNiveau(e.Graphics);
         }
 
@@ -56,7 +61,7 @@ namespace CasseBrique
         {
 
             // enleève le curseur 
-            Cursor.Current = null;
+            /*Cursor.Current = null;
             Graphics g;
             g = this.CreateGraphics();
             // met à jour la position de la barre
@@ -65,7 +70,9 @@ namespace CasseBrique
             g.Clear(Color.White);
             this.barre.dessinerBarre(g);
             g.Dispose();
-            //Refresh();
+            //Refresh();*/
+            Cursor.Current = null;
+            pictureBarre1.deplacerBarre(e.X, this);
             
         }
 
@@ -133,10 +140,12 @@ namespace CasseBrique
                     }
                 }
             }
-            if (barre.Rect.Contains(new Point(balle.Centre.X, balle.Centre.Y + Boule.diametre / 2)))
+            /*if (barre.Rect.Contains(new Point(balle.Centre.X, balle.Centre.Y + Boule.diametre / 2)))
             {
                 return 5;
-            }
+            }*/
+            //if (pictureBarre1.Contains(new Point(balle.Centre.X, balle.Centre.Y + Boule.diametre / 2)))
+              //  return 5;
             return 0;
         }
 

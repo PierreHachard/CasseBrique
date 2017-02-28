@@ -56,6 +56,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PictureBarre.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="PictureBoule.cs">
       <SubType>Component</SubType>
     </Compile>
