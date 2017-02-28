@@ -25,7 +25,7 @@ namespace CasseBrique
         /// </summary>
         public PictureBarre()
         {
-            
+
         }
 
         public void deplacerBarre(int sourisX, Jeu j)

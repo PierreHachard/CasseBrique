@@ -16,15 +16,16 @@ namespace CasseBrique
         //private Barre barre;
         private Accueil accueil;
         private Graphics p;
-
+        public int tick = 0;
         public Jeu(Accueil accueil)
         {
             InitializeComponent();
 
             //La balle
-            balle.Location = new System.Drawing.Point(265, 565);
+            balle.Location = new System.Drawing.Point(265, 568);
             balle.Name = "pictureBoule1";
             balle.Size = new System.Drawing.Size(12, 12);
+            balle.Centre = balle.Location;
 
             //La barre
             pictureBarre1.Location = new System.Drawing.Point(265, 580); //x,y
@@ -36,7 +37,7 @@ namespace CasseBrique
             this.accueil = accueil;
             this.accueil.Visible = false;
             niveau1 = new Niveau(1);
-            barre = new Barre(230, 60);
+           // barre = new Barre(230, 60);
         }
 
         private void Jeu_Load(object sender, EventArgs e)
@@ -52,32 +53,28 @@ namespace CasseBrique
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            //this.barre.dessinerBarre(e.Graphics);
             this.niveau1.dessinerNiveau(e.Graphics);
         }
 
         private void Jeu_MouseMove(object sender, MouseEventArgs e)
         {
 
-            // enleève le curseur 
-            /*Cursor.Current = null;
-            Graphics g;
-            g = this.CreateGraphics();
-            // met à jour la position de la barre
-            g.Clip = new Region(new Rectangle(barre.PositionX, barre.PositionY, barre.Longueur, barre.Largeur ));
-            this.barre.deplacerBarre(e.X - barre.Longueur/2, e.Y);
-            g.Clear(Color.White);
-            this.barre.dessinerBarre(g);
-            g.Dispose();
-            //Refresh();*/
+            // enlève le curseur 
             Cursor.Current = null;
+
             pictureBarre1.deplacerBarre(e.X, this);
 
         }
 
         private void mouvementBalle_Tick(object sender, EventArgs e)
         {
+
+            if (collision(balle, 1) != 0)
+                tick = 1;
+            else
+                tick = 0;
             balle.deplacerBalle(collision(balle, 1));
+
         }
 
         private void Jeu_MouseClick(object sender, MouseEventArgs e)
@@ -85,7 +82,7 @@ namespace CasseBrique
             mouvementBalle.Enabled = true;
         }
 
-        // retourne un int : 1 si tape en haut
+        // retourne un int : 1 si tape le haut
         //                   2 si tape le bas
         //                   3 si tape la gauche
         //                   4 si tape la droite
@@ -103,48 +100,65 @@ namespace CasseBrique
                     g = this.CreateGraphics();
                     if (b.Rect.Contains(new Point(balle.Centre.X + balle.Width / 2, balle.Centre.Y)))
                     {
+
                         g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 2, b.Largeur + 2));
-                        b.redessinerBrick(g);
-                        if (b.Resistance == 0)
-                            niveau1.ListeBrick[niveau, i] = null;
-                        g.Dispose();
+                        if(tick == 0){
+                            //b.redessinerBrick(g);
+                            if (b.Resistance == 0)
+                                niveau1.ListeBrick[niveau, i] = null;
+                            b.redessinerBrick(g);
+                            g.Dispose();
+                            
+                        }
                         return 3;
+
                     }
                     else if (b.Rect.Contains(new Point(balle.Centre.X - 6, balle.Centre.Y)))
                     {
                         g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 2, b.Largeur + 2));
-                        b.redessinerBrick(g);
-                        if (b.Resistance == 0)
-                            niveau1.ListeBrick[niveau, i] = null;
-                        g.Dispose();
+                        if (tick == 0)
+                        {
+                            //b.redessinerBrick(g);
+                            if (b.Resistance == 0)
+                                niveau1.ListeBrick[niveau, i] = null;
+                            b.redessinerBrick(g);
+                            g.Dispose();
+                            
+                        }
                         return 4;
                     }
                     else if (b.Rect.Contains(new Point(balle.Centre.X, balle.Centre.Y - 6)))
                     {
                         g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 2, b.Largeur + 2));
-                        b.redessinerBrick(g);
-                        if (b.Resistance == 0)
-                            niveau1.ListeBrick[niveau, i] = null;
-                        g.Dispose();
+                        if (tick == 0)
+                        {
+                            //b.redessinerBrick(g);
+                            if (b.Resistance == 0)
+                                niveau1.ListeBrick[niveau, i] = null;
+                            b.redessinerBrick(g);
+                            g.Dispose();
+                            
+                        }
                         return 2;
                     }
                     else if (b.Rect.Contains(new Point(balle.Centre.X, balle.Centre.Y + 6)))
                     {
                         g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 2, b.Largeur + 2));
-                        b.redessinerBrick(g);
-                        if (b.Resistance == 0)
-                            niveau1.ListeBrick[niveau, i] = null;
-                        g.Dispose();
+                        if (tick == 0)
+                        {
+                            //b.redessinerBrick(g);
+                            if (b.Resistance == 0)
+                                niveau1.ListeBrick[niveau, i] = null;
+                            b.redessinerBrick(g);
+                            g.Dispose();
+                            
+                        }
                         return 1;
                     }
                 }
             }
-            if (barre.Rect.Contains(new Point(balle.Centre.X, balle.Centre.Y + balle.Width / 2)))
-            {
-                return 5;
-            }
-            //if (pictureBarre1.Contains(new Point(balle.Centre.X, balle.Centre.Y + Boule.diametre / 2)))
-            //  return 5;
+           // if (pictureBarre1.Rect.Contains(new Point(balle.Centre.X, balle.Centre.Y + 6)))
+            //return 5;
             return 0;
         }
     }
