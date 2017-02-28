@@ -159,7 +159,7 @@ namespace CasseBrique
             }
             //if (pictureBarre1.Contains(new Point(balle.Centre.X, balle.Centre.Y + balle.Width / 2)))
               //  return 5;
-            if ((balle.Centre.Y == pictureBarre1.Centre.Y - 5) && ( (balle.Centre.X < pictureBarre1.Centre.X + pictureBarre1.Width / 2) && (balle.Centre.X > pictureBarre1.Centre.X - pictureBarre1.Width / 2)))
+            if ((balle.Centre.Y >= pictureBarre1.Centre.Y - pictureBarre1.Height/2 && (balle.Centre.Y <= pictureBarre1.Centre.Y - pictureBarre1.Height / 2 + 2)) && ( (balle.Centre.X < pictureBarre1.Centre.X + pictureBarre1.Width / 2) && (balle.Centre.X > pictureBarre1.Centre.X - pictureBarre1.Width / 2)))
             {
                 return 5;
             }

@@ -35,19 +35,19 @@ namespace CasseBrique
             rect = new System.Drawing.Rectangle(positionX, positionY, longueur, largeur);
         }
 
-    public void dessinerBrick(Graphics g)
-    {
-        if (this.resistance == 1)
-            g.FillRectangle(new SolidBrush(Color.Red), this.positionX, this.positionY, longueur, largeur);
-        else if (this.resistance == 2)
-            g.FillRectangle(new SolidBrush(Color.Green), this.positionX, this.positionY, longueur, largeur);
-        else if (this.resistance == 3)
-            g.FillRectangle(new SolidBrush(Color.Blue), this.positionX, this.positionY, longueur, largeur);
-        g.DrawRectangle(new Pen(Color.White, 1), this.positionX-1, this.positionY-1, longueur+2, largeur+2);
-    }
+        public void dessinerBrick(Graphics g)
+        {
+            if (this.resistance == 1)
+                g.FillRectangle(new SolidBrush(Color.Red), this.positionX, this.positionY, longueur, largeur);
+            else if (this.resistance == 2)
+                g.FillRectangle(new SolidBrush(Color.Green), this.positionX, this.positionY, longueur, largeur);
+            else if (this.resistance == 3)
+                g.FillRectangle(new SolidBrush(Color.Blue), this.positionX, this.positionY, longueur, largeur);
+            g.DrawRectangle(new Pen(Color.White, 1), this.positionX - 1, this.positionY - 1, longueur + 2, largeur + 2);
+        }
 
-    public void redessinerBrick(Graphics g)
-    {
+        public void redessinerBrick(Graphics g)
+        {
             this.resistance -= 1;
             if (this.resistance == 1)
                 g.FillRectangle(new SolidBrush(Color.Red), this.positionX, this.positionY, longueur, largeur);
@@ -60,4 +60,5 @@ namespace CasseBrique
             if (resistance > 0)
                 g.DrawRectangle(new Pen(Color.White, 1), this.positionX - 1, this.positionY - 1, longueur + 1, largeur + 1);
         }
+    }
 }
