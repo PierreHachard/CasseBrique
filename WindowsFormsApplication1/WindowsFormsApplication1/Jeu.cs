@@ -31,19 +31,20 @@ namespace CasseBrique
             pictureBarre1.Location = new System.Drawing.Point(265, 580); //x,y
             pictureBarre1.Name = "pictureBarre1";
             pictureBarre1.Size = new System.Drawing.Size(50, 15);
-            pictureBarre1.Centre = new System.Drawing.Point(265, 580);
+            pictureBarre1.Centre = pictureBarre1.Location;
 
 
             this.accueil = accueil;
             this.accueil.Visible = false;
             niveau1 = new Niveau(1);
-           // barre = new Barre(230, 60);
         }
 
         private void Jeu_Load(object sender, EventArgs e)
         {
 
         }
+
+
 
         private void Jeu_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -63,7 +64,6 @@ namespace CasseBrique
             Cursor.Current = null;
 
             pictureBarre1.deplacerBarre(e.X, this);
-
         }
 
         private void mouvementBalle_Tick(object sender, EventArgs e)
@@ -157,8 +157,12 @@ namespace CasseBrique
                     }
                 }
             }
-           // if (pictureBarre1.Rect.Contains(new Point(balle.Centre.X, balle.Centre.Y + 6)))
-            //return 5;
+            //if (pictureBarre1.Contains(new Point(balle.Centre.X, balle.Centre.Y + balle.Width / 2)))
+              //  return 5;
+            if ((balle.Centre.Y == pictureBarre1.Centre.Y - 5) && ( (balle.Centre.X < pictureBarre1.Centre.X + pictureBarre1.Width / 2) && (balle.Centre.X > pictureBarre1.Centre.X - pictureBarre1.Width / 2)))
+            {
+                return 5;
+            }
             return 0;
         }
     }
