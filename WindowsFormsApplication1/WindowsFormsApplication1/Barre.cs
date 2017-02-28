@@ -12,13 +12,22 @@ public class Barre
     public int PositionY { get { return positionY; } }
     public int Longueur { get { return longueur; } }
     public int Largeur { get { return largeur; } }
+    private System.Drawing.Rectangle rect;
+    public System.Drawing.Rectangle Rect
+    {
+        get
+        {
+            return rect;
+        }
+    }
     //public Graphics gBarre;
 
     public Barre(int x, int longueur)
     {
         this.longueur = longueur;
         this.positionX = x;
-	}
+        rect = new System.Drawing.Rectangle(positionX, positionY,longueur,largeur);
+    }
 
     public void dessinerBarre(Graphics g)
     {
@@ -33,6 +42,7 @@ public class Barre
             this.positionX = 0;
         else if (sourisX > 440)
             this.positionX = 440;
+        rect = new System.Drawing.Rectangle(positionX, positionY, longueur, largeur);
 
     }
 

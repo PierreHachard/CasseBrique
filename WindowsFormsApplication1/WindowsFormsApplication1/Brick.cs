@@ -12,6 +12,7 @@ public class Brick
     public int PositionY { get { return positionY; } }
     public int Longueur { get { return longueur; } }
     public int Largeur { get { return largeur; } }
+    public int Resistance { get { return resistance; } }
     private int resistance;
     private System.Drawing.Rectangle rect;
     public System.Drawing.Rectangle Rect
@@ -55,6 +56,7 @@ public class Brick
         {
             g.Clear(Color.White);
         }
+        if (resistance !=0)
         g.DrawRectangle(new Pen(Color.Black, 1), this.positionX - 1, this.positionY - 1, longueur + 1, largeur + 1);
     }
 }

@@ -13,37 +13,27 @@ namespace CasseBrique
     public partial class Jeu : Form
     {
         private Niveau niveau1;
-        //private Barre barre;
-        private Boule balle;
+        private Barre barre;
         private Accueil accueil;
         private Graphics p;
-
-        private Plateau plateau;
 
         public Jeu(Accueil accueil)
         {
             InitializeComponent();
+
+            balle.Location = new System.Drawing.Point(265, 565);
+            balle.Name = "pictureBoule1";
+            balle.Size = new System.Drawing.Size(12, 12);
+            balle.TabIndex = 0;
+            balle.TabStop = false;
+
+
             this.accueil = accueil;
             this.accueil.Visible = false;
             niveau1 = new Niveau(1);
-            //barre = new Barre(230, 60);
-            plateau = new Plateau(230, 60, 100, this.Bottom - this.Bottom / 10);
-            balle = new Boule(new Point(265,565));
+            barre = new Barre(230, 60);
             p = this.CreateGraphics();
-
-            this.testPlateau = new Plateau();
-            ((System.ComponentModel.ISupportInitialize)(this.testPlateau)).BeginInit();
-            // 
-            // testPlateau
-            // 
-            this.testPlateau.BackColor = System.Drawing.Color.DarkGray;
-            this.testPlateau.Location = new System.Drawing.Point(115, 579);
-            this.testPlateau.Name = "testPlateau";
-            this.testPlateau.Size = new System.Drawing.Size(262, 16);
-            this.testPlateau.TabIndex = 0;
-            this.testPlateau.TabStop = false;
         }
-
 
         private void Jeu_Load(object sender, EventArgs e)
         {
@@ -58,14 +48,13 @@ namespace CasseBrique
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            //this.barre.dessinerBarre(e.Graphics);
+            this.barre.dessinerBarre(e.Graphics);
             this.niveau1.dessinerNiveau(e.Graphics);
-            this.balle.dessinerBalle(e.Graphics);
         }
 
         private void Jeu_MouseMove(object sender, MouseEventArgs e)
         {
-            /*
+
             // enleève le curseur 
             Cursor.Current = null;
             Graphics g;
@@ -76,23 +65,13 @@ namespace CasseBrique
             g.Clear(Color.White);
             this.barre.dessinerBarre(g);
             g.Dispose();
-            //Refresh();*/
+            //Refresh();
             
         }
 
         private void mouvementBalle_Tick(object sender, EventArgs e)
         {
-            // efface la balle précédente et la redessine à sa nouvelle position
-            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
-            path.AddEllipse(balle.Centre.X - Boule.diametre / 2, balle.Centre.Y - Boule.diametre / 2, Boule.diametre, Boule.diametre);
-             // met à jour la position de la balle
-            p.Clip = new Region(path);
-            p.Clear(Color.White);
-            this.balle.deplacerBalle(collision(balle));
-             path.Reset();
-             path.AddEllipse(balle.Centre.X - Boule.diametre / 2, balle.Centre.Y - Boule.diametre / 2, Boule.diametre, Boule.diametre);
-             p.Clip = new Region(path);
-             this.balle.dessinerBalle(p);
+            balle.deplacerBalle(collision(balle,1));
         }
 
         private void Jeu_MouseClick(object sender, MouseEventArgs e)
@@ -104,87 +83,66 @@ namespace CasseBrique
         //                   2 si tape le bas
         //                   3 si tape la gauche
         //                   4 si tape la droite
-        private int collision( Boule balle)
+        private int collision( PictureBoule balle, int niveau)
         {
             int i = 0;
-            foreach (Brick b in niveau1.ListeBrick)
+            niveau -= 1;
+            Brick b;
+            for (i = 0; i < 25; i++)
             {
-                if (b != null) {
-                    i++;
-                    /* if ((balle.Centre.Y + Boule.diametre/2 <= b.PositionY + 2 && balle.Centre.Y + Boule.diametre / 2 >= b.PositionY - 2) && (balle.Centre.X - Boule.diametre / 2 <= b.PositionX + b.Longueur && balle.Centre.X + Boule.diametre/2 >= b.PositionX))
-                      {
-                         Graphics g;
-                          g = this.CreateGraphics();
-                          g.Clip = new Region( new Rectangle(b.PositionX -1 , b.PositionY-1, b.Longueur+1,b.Largeur+1));
-                          b.redessinerBrick(g);
-                          g.Dispose();
-                          return 1; // vers le haut
-                      }
-                       if ((balle.Centre.Y + Boule.diametre / 2 <= b.PositionY + b.Largeur  + 2 && balle.Centre.Y + Boule.diametre / 2 >= b.PositionY + b.Largeur - 2) && (balle.Centre.X - Boule.diametre / 2 <= b.PositionX + b.Longueur && balle.Centre.X + Boule.diametre + Boule.diametre / 2 >= b.PositionX))
-                      {
-                          Graphics g;
-                          g = this.CreateGraphics();
-                          g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 1, b.Largeur + 1));
-                          b.redessinerBrick(g);
-                          g.Dispose();
-                          return 2; // vers le bas
-                      }
-                       if ((balle.Centre.X + Boule.diametre / 2 <= b.PositionX + 2 && balle.Centre.X + Boule.diametre / 2 >= b.PositionX - 2) && (balle.Centre.Y + Boule.diametre / 2 >= b.PositionY && balle.Centre.Y - Boule.diametre/2 <= b.PositionY + b.Largeur))
-                      {
-                         Graphics g;
-                          g = this.CreateGraphics();
-                          g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 1, b.Largeur + 1));
-                          b.redessinerBrick(g);
-                          g.Dispose();
-                          return 3; // vers la gauche
-                      }
-                      if ((balle.Centre.X + Boule.diametre / 2 <= b.PositionX + b.Largeur + 2 && balle.Centre.X + Boule.diametre / 2 >= b.PositionY + b.Largeur - 2) && (balle.Centre.Y + Boule.diametre / 2 >= b.PositionY && balle.Centre.Y - Boule.diametre / 2 <= b.PositionY + b.Largeur))
-                      {
-                          Graphics g;
-                          g = this.CreateGraphics();
-                          g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 1, b.Largeur + 1));
-                          b.redessinerBrick(g);
-                          g.Dispose();
-                          return 4; // vers la droite
-                      }*/
-
+                b = niveau1.ListeBrick[niveau, i];
+                if (b!= null)
+                {
                     Graphics g;
                     g = this.CreateGraphics();
-                    if (b.Rect.Contains(new Point(balle.Centre.X + Boule.diametre / 2,balle.Centre.Y)))
+                    if (b.Rect.Contains(new Point(balle.Centre.X + Boule.diametre / 2, balle.Centre.Y)))
                     {
-                        g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 1, b.Largeur + 1));
+                        g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 2, b.Largeur + 2));
                         b.redessinerBrick(g);
+                        if (b.Resistance == 0)
+                            niveau1.ListeBrick[niveau, i] = null;
                         g.Dispose();
                         return 3;
                     }
                     else if (b.Rect.Contains(new Point(balle.Centre.X - Boule.diametre / 2, balle.Centre.Y)))
                     {
-                        g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 1, b.Largeur + 1));
+                        g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 2, b.Largeur + 2));
                         b.redessinerBrick(g);
+                        if (b.Resistance == 0)
+                            niveau1.ListeBrick[niveau, i] = null;
                         g.Dispose();
                         return 4;
                     }
                     else if (b.Rect.Contains(new Point(balle.Centre.X, balle.Centre.Y - Boule.diametre / 2)))
                     {
-                        g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 1, b.Largeur + 1));
+                        g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 2, b.Largeur + 2));
                         b.redessinerBrick(g);
+                        if (b.Resistance == 0)
+                            niveau1.ListeBrick[niveau, i] = null;
                         g.Dispose();
                         return 2;
                     }
                     else if (b.Rect.Contains(new Point(balle.Centre.X, balle.Centre.Y + Boule.diametre / 2)))
                     {
-                        g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 1, b.Largeur + 1));
+                        g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 2, b.Largeur + 2));
                         b.redessinerBrick(g);
+                        if (b.Resistance == 0)
+                            niveau1.ListeBrick[niveau, i] = null;
                         g.Dispose();
                         return 1;
                     }
-
-
                 }
             }
-
+            if (barre.Rect.Contains(new Point(balle.Centre.X, balle.Centre.Y + Boule.diametre / 2)))
+            {
+                return 5;
+            }
             return 0;
         }
 
+        private void ovalPictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

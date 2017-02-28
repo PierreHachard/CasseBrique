@@ -71,9 +71,5 @@ namespace CasseBrique
                 b.dessinerBrick(g);
             }
         }
-
-        public void setList(int i, int j, Brick b)
-        { listeBrick[i, j] = b; }
-
     }
 }

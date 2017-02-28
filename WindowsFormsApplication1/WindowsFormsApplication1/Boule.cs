@@ -10,6 +10,7 @@ namespace CasseBrique
     class Boule
     {
         public static int diametre = 12;
+        private PictureBoule formeGraphique;
         private Point centre;
         public int compteurX = 0;
         public int compteurY = 0;
@@ -20,15 +21,23 @@ namespace CasseBrique
         }
 
 
-        public Boule(Point Centre)
+        public Boule(Point Centre )
         {
             this.centre = Centre;
+            
+            /*   formeGraphique = b;
+               formgraphique.Location = new Point(265, 565);
+               b.Left = centre.X - diametre /2;
+               b.Top =centre.Y - diametre/2;
+               b.Size = new Size(diametre, diametre);
+               b.Show();*/
         }
 
         public void dessinerBalle(Graphics g)
         {
-            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            g.FillEllipse(new SolidBrush(Color.Blue), centre.X - diametre / 2, centre.Y - diametre / 2, diametre, diametre);
+            //formeGraphique.Size = new Size(12, 12);
+            /*g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            g.FillEllipse(new SolidBrush(Color.Blue), centre.X - diametre / 2, centre.Y - diametre / 2, diametre, diametre);*/
         }
 
         public void deplacerBalle(int collision)
@@ -44,7 +53,7 @@ namespace CasseBrique
                 compteurX = 1;
                 this.centre.X -= 5;
             }
-            if (this.centre.Y >= 600 || compteurY == 0 || collision == 1) // vers le haut
+            if (this.centre.Y >= 600 || compteurY == 0 || collision == 1 || collision == 5) // vers le haut
             {
                 compteurY = 0;
                 this.centre.Y -= 5;
