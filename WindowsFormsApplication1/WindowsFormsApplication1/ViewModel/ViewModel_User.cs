@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using WindowsFormsApplication1.Model;
-namespace WindowsFormsApplication1.ViewModel
+using CasseBrique.Model;
+namespace CasseBrique.ViewModel
 {
     public class ViewModel_User
     {
