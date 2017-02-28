@@ -14,18 +14,24 @@ namespace CasseBrique
     {
         private Niveau niveau1;
         private Barre barre;
-        private Boule balle;
         private Accueil accueil;
         private Graphics p;
 
         public Jeu(Accueil accueil)
         {
             InitializeComponent();
+
+            balle.Location = new System.Drawing.Point(265, 565);
+            balle.Name = "pictureBoule1";
+            balle.Size = new System.Drawing.Size(12, 12);
+            balle.TabIndex = 0;
+            balle.TabStop = false;
+
+
             this.accueil = accueil;
             this.accueil.Visible = false;
             niveau1 = new Niveau(1);
             barre = new Barre(230, 60);
-            balle = new Boule(new Point(265,565));
             p = this.CreateGraphics();
         }
 
@@ -44,7 +50,6 @@ namespace CasseBrique
             base.OnPaint(e);
             this.barre.dessinerBarre(e.Graphics);
             this.niveau1.dessinerNiveau(e.Graphics);
-            this.balle.dessinerBalle(e.Graphics);
         }
 
         private void Jeu_MouseMove(object sender, MouseEventArgs e)
@@ -66,17 +71,7 @@ namespace CasseBrique
 
         private void mouvementBalle_Tick(object sender, EventArgs e)
         {
-            // efface la balle précédente et la redessine à sa nouvelle position
-            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
-            path.AddEllipse(balle.Centre.X - Boule.diametre / 2, balle.Centre.Y - Boule.diametre / 2, Boule.diametre, Boule.diametre);
-             // met à jour la position de la balle
-            p.Clip = new Region(path);
-            p.Clear(Color.White);
-            this.balle.deplacerBalle(collision(balle,1));
-             path.Reset();
-             path.AddEllipse(balle.Centre.X - Boule.diametre / 2, balle.Centre.Y - Boule.diametre / 2, Boule.diametre, Boule.diametre);
-             p.Clip = new Region(path);
-             this.balle.dessinerBalle(p);
+            balle.deplacerBalle(collision(balle,1));
         }
 
         private void Jeu_MouseClick(object sender, MouseEventArgs e)
@@ -88,7 +83,7 @@ namespace CasseBrique
         //                   2 si tape le bas
         //                   3 si tape la gauche
         //                   4 si tape la droite
-        private int collision( Boule balle, int niveau)
+        private int collision( PictureBoule balle, int niveau)
         {
             int i = 0;
             niveau -= 1;
@@ -145,5 +140,9 @@ namespace CasseBrique
             return 0;
         }
 
+        private void ovalPictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
