@@ -25,24 +25,26 @@ namespace CasseBrique
             balle.Location = new System.Drawing.Point(265, 565);
             balle.Name = "pictureBoule1";
             balle.Size = new System.Drawing.Size(12, 12);
+            balle.Centre = balle.Location;
 
             //La barre
             pictureBarre1.Location = new System.Drawing.Point(265, 580); //x,y
             pictureBarre1.Name = "pictureBarre1";
             pictureBarre1.Size = new System.Drawing.Size(50, 15);
-            pictureBarre1.Centre = new System.Drawing.Point(265, 580);
+            pictureBarre1.Centre = pictureBarre1.Location;
 
 
             this.accueil = accueil;
             this.accueil.Visible = false;
             niveau1 = new Niveau(1);
-            barre = new Barre(230, 60);
         }
 
         private void Jeu_Load(object sender, EventArgs e)
         {
 
         }
+
+
 
         private void Jeu_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -70,9 +72,11 @@ namespace CasseBrique
             this.barre.dessinerBarre(g);
             g.Dispose();
             //Refresh();*/
-            Cursor.Current = null;
+            //Cursor.Current = null;
+            Cursor.Hide();
+            //Cursor.Clip = new Rectangle(0, 0, this.Bottom, this.Width);
+            //Cursor.Clip = this.DefaultMinimumSize;
             pictureBarre1.deplacerBarre(e.X, this);
-
         }
 
         private void mouvementBalle_Tick(object sender, EventArgs e)
@@ -104,7 +108,7 @@ namespace CasseBrique
                     if (b.Rect.Contains(new Point(balle.Centre.X + balle.Width / 2, balle.Centre.Y)))
                     {
                         g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 2, b.Largeur + 2));
-                        b.redessinerBrick(g);
+                        b.redessinerBrick(g,this);
                         if (b.Resistance == 0)
                             niveau1.ListeBrick[niveau, i] = null;
                         g.Dispose();
@@ -113,7 +117,7 @@ namespace CasseBrique
                     else if (b.Rect.Contains(new Point(balle.Centre.X - 6, balle.Centre.Y)))
                     {
                         g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 2, b.Largeur + 2));
-                        b.redessinerBrick(g);
+                        b.redessinerBrick(g, this);
                         if (b.Resistance == 0)
                             niveau1.ListeBrick[niveau, i] = null;
                         g.Dispose();
@@ -122,7 +126,7 @@ namespace CasseBrique
                     else if (b.Rect.Contains(new Point(balle.Centre.X, balle.Centre.Y - 6)))
                     {
                         g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 2, b.Largeur + 2));
-                        b.redessinerBrick(g);
+                        b.redessinerBrick(g, this);
                         if (b.Resistance == 0)
                             niveau1.ListeBrick[niveau, i] = null;
                         g.Dispose();
@@ -131,7 +135,7 @@ namespace CasseBrique
                     else if (b.Rect.Contains(new Point(balle.Centre.X, balle.Centre.Y + 6)))
                     {
                         g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 2, b.Largeur + 2));
-                        b.redessinerBrick(g);
+                        b.redessinerBrick(g, this);
                         if (b.Resistance == 0)
                             niveau1.ListeBrick[niveau, i] = null;
                         g.Dispose();
@@ -139,12 +143,12 @@ namespace CasseBrique
                     }
                 }
             }
-            if (barre.Rect.Contains(new Point(balle.Centre.X, balle.Centre.Y + balle.Width / 2)))
+            //if (pictureBarre1.Contains(new Point(balle.Centre.X, balle.Centre.Y + balle.Width / 2)))
+              //  return 5;
+            if ((balle.Centre.Y == pictureBarre1.Centre.Y - 5) && ( (balle.Centre.X < pictureBarre1.Centre.X + pictureBarre1.Width / 2) && (balle.Centre.X > pictureBarre1.Centre.X - pictureBarre1.Width / 2)))
             {
                 return 5;
             }
-            //if (pictureBarre1.Contains(new Point(balle.Centre.X, balle.Centre.Y + Boule.diametre / 2)))
-            //  return 5;
             return 0;
         }
     }

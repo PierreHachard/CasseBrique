@@ -23,11 +23,14 @@ namespace CasseBrique
         private void Accueil_Load(object sender, EventArgs e)
         {
             Jeu formJeu = new Jeu(this);
-            formJeu.Show(); 
+            //formJeu.Show(); 
         }
+
+
 
         private void btnConnexion_Click(object sender, EventArgs e)
         {
+            /*
             //String nomDeCompte = nomCompte.Text;
             Console.WriteLine("Nom de compte : "+nomCompte.Text+", mot de passe : "+password.Text);
 
@@ -47,10 +50,11 @@ namespace CasseBrique
             {
                 MessageBox.Show(this, "Le mot de passe ne correspond pas au nom de compte", "Casse-Brique", MessageBoxButtons.OK, MessageBoxIcon.None);
             }
-            
+            */
             //Application.Exit();
-            
-            //this.Hide();// = false;
+            Jeu formJeu = new Jeu(this);
+            formJeu.Show(); 
+            this.Hide();// = false;
             //this.Visible = false;
         }
 

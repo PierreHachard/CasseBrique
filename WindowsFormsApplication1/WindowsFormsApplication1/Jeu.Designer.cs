@@ -46,7 +46,7 @@
             this.pictureBarre1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBarre1.BackColor = System.Drawing.Color.Black;
             this.pictureBarre1.Centre = new System.Drawing.Point(0, 0);
-            this.pictureBarre1.Location = new System.Drawing.Point(103, 513);
+            this.pictureBarre1.Location = new System.Drawing.Point(63, 502);
             this.pictureBarre1.Name = "pictureBarre1";
             this.pictureBarre1.Size = new System.Drawing.Size(259, 15);
             this.pictureBarre1.TabIndex = 1;
@@ -56,7 +56,7 @@
             // 
             this.balle.BackColor = System.Drawing.Color.DarkBlue;
             this.balle.Centre = new System.Drawing.Point(0, 0);
-            this.balle.Location = new System.Drawing.Point(197, 267);
+            this.balle.Location = new System.Drawing.Point(255, 370);
             this.balle.Name = "balle";
             this.balle.Size = new System.Drawing.Size(64, 25);
             this.balle.TabIndex = 0;
