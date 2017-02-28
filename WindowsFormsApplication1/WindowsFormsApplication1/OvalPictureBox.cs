@@ -7,7 +7,7 @@ class OvalPictureBox : PictureBox
 {
     public OvalPictureBox()
     {
-        this.BackColor = Color.DarkBlue;
+        this.BackColor = Color.DarkGray;
     }
     protected override void OnResize(EventArgs e)
     {
