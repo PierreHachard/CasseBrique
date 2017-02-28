@@ -44,7 +44,7 @@ namespace WindowsFormsApplication1
                 compteurX = 1;
                 this.centre.X -= 5;
             }
-            if (this.centre.Y >= 600 || compteurY == 0 || collision == 1) // vers le haut
+            if (this.centre.Y >= 600 || compteurY == 0 || collision == 1 || collision == 5) // vers le haut
             {
                 compteurY = 0;
                 this.centre.Y -= 5;
