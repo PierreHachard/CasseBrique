@@ -59,6 +59,11 @@ namespace CasseBrique
 
         }
 
+        public void DeplacerBalleSurPlateau(PictureBarre plateau)
+        {
+            Centre = new Point(plateau.Centre.X, plateau.Centre.Y - plateau.Height/2 - this.Height/2 + 1);
+        }
+
 
     }
 }

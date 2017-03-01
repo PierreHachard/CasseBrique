@@ -17,6 +17,7 @@ namespace CasseBrique
         public int tick = 0;
         private int viesRestantes = 3;
         private Bitmap viesImage =  new Bitmap(@"C:\Users\maxim\Source\Repos\CasseBrique2\WindowsFormsApplication1\coeur.jpg");
+        private Bitmap gameOverImg = new Bitmap(@"C:\Users\maxim\Source\Repos\CasseBrique2\WindowsFormsApplication1\gameOver.jpg");
         public Jeu(Accueil accueil)
         {
             InitializeComponent();
@@ -45,11 +46,24 @@ namespace CasseBrique
                     viesImage.SetPixel(x, y, newColor);
                 }
             }
+            x = 0;
+            y = 0;
+            for (x = 0; x < gameOverImg.Width; x++)
+            {
+                for (y = 0; y < gameOverImg.Height; y++)
+                {
+                    Color pixelColor = gameOverImg.GetPixel(x, y);
+                    Color newColor = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
+                    gameOverImg.SetPixel(x, y, newColor);
+                }
+            }
 
             // Set the PictureBox to display the image.
             pictureBox1.Image = viesImage;
             pictureBox2.Image = viesImage;
             pictureBox3.Image = viesImage;
+            pictureBox4.Image = gameOverImg;
+            pictureBox4.Hide();
 
             this.accueil = accueil;
             this.accueil.Visible = false;
@@ -81,6 +95,10 @@ namespace CasseBrique
             Cursor.Current = null;
 
             pictureBarre1.deplacerBarre(e.X, this);
+            if (mouvementBalle.Enabled == false)
+            {
+                balle.DeplacerBalleSurPlateau(pictureBarre1);
+            }
         }
 
         private void mouvementBalle_Tick(object sender, EventArgs e)
@@ -107,6 +125,7 @@ namespace CasseBrique
                 if (viesRestantes == 0)
                 {
                     pictureBox1.Hide();
+                    GameOver();
                 }
             }
 
@@ -212,6 +231,32 @@ namespace CasseBrique
             pictureBarre1.Size = new System.Drawing.Size(50, 15);
             pictureBarre1.Centre = pictureBarre1.Location;
             mouvementBalle.Enabled = false;
+        }
+
+        public void GameOver()
+        {
+            balle.Location = new System.Drawing.Point(265, 568);
+            balle.Size = new System.Drawing.Size(12, 12);
+            balle.Centre = balle.Location;
+
+            //La barre
+            pictureBarre1.Location = new System.Drawing.Point(265, 580); //x,y
+            pictureBarre1.Size = new System.Drawing.Size(50, 15);
+            pictureBarre1.Centre = pictureBarre1.Location;
+            pictureBox3.Show();
+            pictureBox2.Show();
+            pictureBox1.Show();
+            pictureBox4.Show();
+            viesRestantes = 3;
+            mouvementBalle.Enabled = false;
+            niveau1 = new Niveau(1);
+            Refresh();
+
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            pictureBox4.Hide();
         }
     }
 }
