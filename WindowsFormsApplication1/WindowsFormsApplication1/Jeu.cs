@@ -13,10 +13,10 @@ namespace CasseBrique
     public partial class Jeu : Form
     {
         private Niveau niveau1;
-        //private Barre barre;
         private Accueil accueil;
-        private Graphics p;
         public int tick = 0;
+        private int viesRestantes = 3;
+        private Bitmap viesImage =  new Bitmap(@"C:\Users\maxim\Source\Repos\CasseBrique2\WindowsFormsApplication1\coeur.jpg");
         public Jeu(Accueil accueil)
         {
             InitializeComponent();
@@ -33,6 +33,23 @@ namespace CasseBrique
             pictureBarre1.Size = new System.Drawing.Size(50, 15);
             pictureBarre1.Centre = pictureBarre1.Location;
 
+            int x, y;
+
+            // Loop through the images pixels to reset color.
+            for (x = 0; x < viesImage.Width; x++)
+            {
+                for (y = 0; y < viesImage.Height; y++)
+                {
+                    Color pixelColor = viesImage.GetPixel(x, y);
+                    Color newColor = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
+                    viesImage.SetPixel(x, y, newColor);
+                }
+            }
+
+            // Set the PictureBox to display the image.
+            pictureBox1.Image = viesImage;
+            pictureBox2.Image = viesImage;
+            pictureBox3.Image = viesImage;
 
             this.accueil = accueil;
             this.accueil.Visible = false;
@@ -74,6 +91,24 @@ namespace CasseBrique
             else
                 tick = 0;
             balle.deplacerBalle(collision(balle, 1));
+            if (balle.Centre.Y > 600)
+            {
+                viesRestantes -= 1;
+                if (viesRestantes == 2)
+                {
+                    pictureBox3.Hide();
+                    ResetGame();
+                }
+                if (viesRestantes == 1)
+                {
+                    pictureBox2.Hide();
+                    ResetGame();
+                }
+                if (viesRestantes == 0)
+                {
+                    pictureBox1.Hide();
+                }
+            }
 
         }
 
@@ -164,6 +199,19 @@ namespace CasseBrique
                 return 5;
             }
             return 0;
+        }
+
+        public void ResetGame()
+        {
+            balle.Location = new System.Drawing.Point(265, 568);
+            balle.Size = new System.Drawing.Size(12, 12);
+            balle.Centre = balle.Location;
+
+            //La barre
+            pictureBarre1.Location = new System.Drawing.Point(265, 580); //x,y
+            pictureBarre1.Size = new System.Drawing.Size(50, 15);
+            pictureBarre1.Centre = pictureBarre1.Location;
+            mouvementBalle.Enabled = false;
         }
     }
 }
