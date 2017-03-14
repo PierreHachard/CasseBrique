@@ -75,7 +75,7 @@
             this.btnConnexion.Click += new System.EventHandler(this.btnConnexion_Click);
             // 
             // password
-            // 
+            //
             this.password.Location = new System.Drawing.Point(405, 285);
             this.password.Name = "password";
             this.password.PasswordChar = '*';

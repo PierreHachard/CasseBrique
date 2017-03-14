@@ -27,12 +27,12 @@ namespace CasseBrique
         }
 
 
-        public void deplacerBalle(int collision)
+        public void deplacerBalle(int collision,Pictureballe balle, PictureBarre barre , ref int angle)
         {
             if (Centre.X < 2 || (compteurX == 0 && collision ==0) || collision == 4) // vers la droite
             {
                 compteurX = 0;
-                this.centre.X += 5;
+                this.centre.X += angle;
                 if (Centre.X >= 490)
                     compteurX = 1;
                 
@@ -40,7 +40,7 @@ namespace CasseBrique
             else if (Centre.X >= 490 || (compteurX == 1 && collision ==0) || collision == 3) // vers la gauche
             {
                 compteurX = 1;
-                this.centre.X -= 5;  
+                this.centre.X -= angle;  
                 if (Centre.X < 2)
                     compteurX = 0;
             }
@@ -48,6 +48,8 @@ namespace CasseBrique
             {
                 compteurY = 0;
                 Centre = new Point(this.centre.X, this.centre.Y - 5);
+                if (collision == 5)
+                    angle = barre.angleRenvoieBalle(balle);
                 if (Centre.Y < 0)
                     compteurY= 1;
             }
@@ -62,6 +64,7 @@ namespace CasseBrique
         {
             Centre = new Point(plateau.Centre.X, plateau.Centre.Y - plateau.Height/2 - this.Height/2 + 1);
         }
+
 
 
     }
