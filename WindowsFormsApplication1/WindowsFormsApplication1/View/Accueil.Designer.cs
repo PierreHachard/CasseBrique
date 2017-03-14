@@ -66,7 +66,7 @@
             this.nomCompte.TabIndex = 1;
             // 
             // password
-            // 
+            //
             this.password.Location = new System.Drawing.Point(405, 285);
             this.password.Name = "password";
             this.password.PasswordChar = '*';

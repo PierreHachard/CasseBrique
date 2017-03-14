@@ -15,6 +15,9 @@ namespace CasseBrique
         private Niveau niveau1;
         private Accueil accueil;
         public Point tmp;
+        public int angle = 5;
+        public int score = 0;
+        public int niveau = 1;
         public int hit = 0;
         private int viesRestantes = 3;
         private Bitmap viesImage = new Bitmap(@"..\..\..\coeur.jpg");
@@ -36,6 +39,8 @@ namespace CasseBrique
             balle.Name = "pictureballe1";
             balle.Size = new System.Drawing.Size(12, 12);
             balle.Centre = balle.Location;
+
+            label1.Text = "Score : " + score;
 
             //La barre
             pictureBarre1.Location = new System.Drawing.Point(265, 580); //x,y
@@ -76,7 +81,7 @@ namespace CasseBrique
 
             this.accueil = accueil;
             this.accueil.Visible = false;
-            niveau1 = new Niveau(1);
+            niveau1 = new Niveau(niveau);
         }
 
         private void Jeu_Load(object sender, EventArgs e)
@@ -114,12 +119,15 @@ namespace CasseBrique
         private void mouvementBalle_Tick(object sender, EventArgs e)
         {
             if (hit == 0)
-                balle.deplacerBalle(collision());
+                balle.deplacerBalle(collision(), balle, pictureBarre1, ref angle);
             else
             {
-                balle.deplacerBalle(hit);
+                balle.deplacerBalle(hit, balle , pictureBarre1, ref angle);
                 hit = 0;
             }
+            label1.Text = "Score : " + score;
+            if (niveau1.niveauTerminé())
+                nextLevel();
 
             //Gestion perte de vies
             if (balle.Centre.Y > 600)
@@ -160,22 +168,23 @@ namespace CasseBrique
             g = this.CreateGraphics();
             if (niveau1.ToucherBrique(balle.Centre, ref tmp, niveau1.NumeroNiveau, g))
             {
-                if (balle.Centre.Y > tmp.Y && balle.Centre.Y < tmp.Y + 15 && tmp.X + 40 / 2 > balle.Centre.X)
+                score += 5;
+                if (balle.Centre.Y > tmp.Y && balle.Centre.Y < tmp.Y + Brick.largeur && tmp.X + Brick.longueur /2 > balle.Centre.X)
                 {
                     hit = 3;
                     return 3;
                 }
-                if (balle.Centre.Y > tmp.Y && balle.Centre.Y < tmp.Y + 15 && tmp.X + 40 / 2 < balle.Centre.X)
+                if (balle.Centre.Y > tmp.Y && balle.Centre.Y < tmp.Y + Brick.largeur && tmp.X + Brick.longueur / 2 < balle.Centre.X)
                 {
                     hit = 4;
                     return 4;
                 }
-                if (balle.Centre.X > tmp.X && balle.Centre.X < tmp.X + 40 && tmp.Y + 15 / 2 < balle.Centre.Y)
+                if (balle.Centre.X > tmp.X && balle.Centre.X < tmp.X + Brick.longueur && tmp.Y + Brick.largeur / 2 < balle.Centre.Y)
                 {
                     hit = 2;
                     return 2;
                 }
-                if (balle.Centre.X > tmp.X && balle.Centre.X < tmp.X + 40 && tmp.Y + 15 / 2 > balle.Centre.Y)
+                if (balle.Centre.X > tmp.X && balle.Centre.X < tmp.X + Brick.longueur && tmp.Y + Brick.largeur / 2 > balle.Centre.Y)
                 {
                     hit = 1;
                     return 1;
@@ -284,12 +293,36 @@ namespace CasseBrique
             pictureBox4.Show();
             viesRestantes = 3;
             mouvementBalle.Enabled = false;
-            niveau1 = new Niveau(1);
+            niveau =  1;
+            niveau1 = new Niveau(niveau);
+            score = 0;
+            label1.Text = "Score : " + score;
             Refresh();
 
         }
 
-        private void pictureBox4_Click(object sender, EventArgs e)
+        public void nextLevel()
+        {
+            mouvementBalle.Enabled = false;
+            balle.Location = new System.Drawing.Point(265, 568);
+            balle.Size = new System.Drawing.Size(12, 12);
+            balle.Centre = balle.Location;
+
+            //La barre
+            pictureBarre1.Location = new System.Drawing.Point(265, 580); //x,y
+            pictureBarre1.Size = new System.Drawing.Size(50, 15);
+            pictureBarre1.Centre = pictureBarre1.Location;
+            if (niveau == 3)
+                niveau = 1;
+            else
+            niveau++;
+            niveau1 = new Niveau(niveau);
+            Refresh();
+        }
+
+
+
+        private void pictureBox4_Click_1(object sender, EventArgs e)
         {
             pictureBox4.Hide();
         }

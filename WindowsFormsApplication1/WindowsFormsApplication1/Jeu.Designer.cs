@@ -34,6 +34,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.pictureBarre1 = new CasseBrique.PictureBarre();
             this.balle = new CasseBrique.Pictureballe();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -46,7 +47,7 @@
             // 
             // mouvementBalle
             // 
-            this.mouvementBalle.Interval = 15;
+            this.mouvementBalle.Interval = 17;
             this.mouvementBalle.Tick += new System.EventHandler(this.mouvementBalle_Tick);
             // 
             // pictureBox1
@@ -80,11 +81,20 @@
             // 
             this.pictureBox4.Location = new System.Drawing.Point(-1, 0);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(495, 702);
+            this.pictureBox4.Size = new System.Drawing.Size(495, 698);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 5;
             this.pictureBox4.TabStop = false;
-            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click_1);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(202, 662);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "label1";
             // 
             // pictureBarre1
             // 
@@ -121,6 +131,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBarre1);
             this.Controls.Add(this.balle);
+            this.Controls.Add(this.label1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Jeu";
@@ -138,6 +149,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBarre1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.balle)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -150,5 +162,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Label label1;
     }
 }
