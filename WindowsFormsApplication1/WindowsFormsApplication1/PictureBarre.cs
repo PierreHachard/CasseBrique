@@ -30,11 +30,14 @@ namespace CasseBrique
 
         public void deplacerBarre(int sourisX, Jeu j)
         {
-            Centre = new Point(sourisX,this.centre.Y);
             if (sourisX <= this.Width/2)
                 Centre = new Point(this.Width / 2, this.centre.Y);
             else if (sourisX >= j.Size.Width - this.Width/2)
                 Centre = new Point(j.Size.Width - this.Width / 2, this.centre.Y);
+            else
+            {
+                Centre = new Point(sourisX, this.centre.Y);
+            }
         }
 
         public int angleRenvoieBalle(Pictureballe balle)
