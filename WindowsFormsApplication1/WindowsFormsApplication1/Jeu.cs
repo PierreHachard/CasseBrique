@@ -14,7 +14,8 @@ namespace CasseBrique
     {
         private Niveau niveau1;
         private Accueil accueil;
-        public int tick = 0;
+        public Point tmp;
+        public int hit = 0;
         private int viesRestantes = 3;
         private Bitmap viesImage = new Bitmap(@"..\..\..\coeur.jpg");
         private Bitmap gameOverImg = new Bitmap(@"..\..\..\gameOver.jpg"); //depuis le main.exe
@@ -25,10 +26,11 @@ namespace CasseBrique
         public Jeu(Accueil accueil)
         {
             InitializeComponent();
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
             //La balle
             balle.Location = new System.Drawing.Point(265, 568);
-            balle.Name = "pictureBoule1";
+            balle.Name = "pictureballe1";
             balle.Size = new System.Drawing.Size(12, 12);
             balle.Centre = balle.Location;
 
@@ -107,12 +109,15 @@ namespace CasseBrique
 
         private void mouvementBalle_Tick(object sender, EventArgs e)
         {
-
-            if (collision(balle, 1) != 0)
-                tick = 1;
+            if (hit == 0)
+                balle.deplacerBalle(collision());
             else
-                tick = 0;
-            balle.deplacerBalle(collision(balle, 1));
+            {
+                balle.deplacerBalle(hit);
+                hit = 0;
+            }
+
+            //Gestion perte de vies
             if (balle.Centre.Y > 600)
             {
                 viesRestantes -= 1;
@@ -144,15 +149,46 @@ namespace CasseBrique
         //                   2 si tape le bas
         //                   3 si tape la gauche
         //                   4 si tape la droite
-        private int collision(PictureBoule balle, int niveau)
+
+        public int collision()
+        {
+            Graphics g;
+            g = this.CreateGraphics();
+            if (niveau1.ToucherBrique(balle.Centre, ref tmp, niveau1.NumeroNiveau, g))
+            {
+                if (balle.Centre.Y > tmp.Y && balle.Centre.Y < tmp.Y + 15 && tmp.X + 40 / 2 > balle.Centre.X)
+                {
+                    hit = 3;
+                    return 3;
+                }
+                if (balle.Centre.Y > tmp.Y && balle.Centre.Y < tmp.Y + 15 && tmp.X + 40 / 2 < balle.Centre.X)
+                {
+                    hit = 4;
+                    return 4;
+                }
+                if (balle.Centre.X > tmp.X && balle.Centre.X < tmp.X + 40 && tmp.Y + 15 / 2 < balle.Centre.Y)
+                {
+                    hit = 2;
+                    return 2;
+                }
+                if (balle.Centre.X > tmp.X && balle.Centre.X < tmp.X + 40 && tmp.Y + 15 / 2 > balle.Centre.Y)
+                {
+                    hit = 1;
+                    return 1;
+                }
+            }
+            if ((balle.Centre.Y >= pictureBarre1.Centre.Y - pictureBarre1.Height / 2 && (balle.Centre.Y <= pictureBarre1.Centre.Y - pictureBarre1.Height / 2 + 2)) && ((balle.Centre.X < pictureBarre1.Centre.X + pictureBarre1.Width / 2) && (balle.Centre.X > pictureBarre1.Centre.X - pictureBarre1.Width / 2)))
+                return 5;
+            return 0;
+        }
+       /* private int collision(Pictureballe balle, int niveau)
         {
             int i = 0;
             niveau -= 1;
-            Brick b;
             for (i = 0; i < 25; i++)
             {
-                b = niveau1.ListeBrick[niveau, i];
-                if (b != null)
+                Brick b = niveau1.ListeBrick1[niveau, i];
+                if ( b!=null && b.Resistance!=0)
                 {
                     Graphics g;
                     g = this.CreateGraphics();
@@ -161,10 +197,8 @@ namespace CasseBrique
 
                         g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 2, b.Largeur + 2));
                         if(tick == 0){
-                            //b.redessinerBrick(g);
-                            if (b.Resistance == 0)
-                                niveau1.ListeBrick[niveau, i] = null;
                             b.redessinerBrick(g);
+                            niveau1.ListeBrick1[niveau, i] = b;
                             g.Dispose();
                             
                         }
@@ -176,10 +210,8 @@ namespace CasseBrique
                         g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 2, b.Largeur + 2));
                         if (tick == 0)
                         {
-                            //b.redessinerBrick(g);
-                            if (b.Resistance == 0)
-                                niveau1.ListeBrick[niveau, i] = null;
                             b.redessinerBrick(g);
+                            niveau1.ListeBrick1[niveau, i] = b;                  
                             g.Dispose();
                             
                         }
@@ -188,12 +220,9 @@ namespace CasseBrique
                     else if (b.Rect.Contains(new Point(balle.Centre.X, balle.Centre.Y - 6)))
                     {
                         g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 2, b.Largeur + 2));
-                        if (tick == 0)
-                        {
-                            //b.redessinerBrick(g);
-                            if (b.Resistance == 0)
-                                niveau1.ListeBrick[niveau, i] = null;
+                        if (tick == 0){
                             b.redessinerBrick(g);
+                            niveau1.ListeBrick1[niveau, i] = b;
                             g.Dispose();
                             
                         }
@@ -203,26 +232,24 @@ namespace CasseBrique
                     {
                         g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 2, b.Largeur + 2));
                         if (tick == 0)
-                        {
-                            //b.redessinerBrick(g);
-                            if (b.Resistance == 0)
-                                niveau1.ListeBrick[niveau, i] = null;
+                       {
                             b.redessinerBrick(g);
+                            niveau1.ListeBrick1[niveau, i] = b;
                             g.Dispose();
-                            
-                        }
+                       }
                         return 1;
                     }
                 }
             }
-            //if (pictureBarre1.Contains(new Point(balle.Centre.X, balle.Centre.Y + balle.Width / 2)))
-              //  return 5;
             if ((balle.Centre.Y >= pictureBarre1.Centre.Y - pictureBarre1.Height/2 && (balle.Centre.Y <= pictureBarre1.Centre.Y - pictureBarre1.Height / 2 + 2)) && ( (balle.Centre.X < pictureBarre1.Centre.X + pictureBarre1.Width / 2) && (balle.Centre.X > pictureBarre1.Centre.X - pictureBarre1.Width / 2)))
             {
                 return 5;
             }
             return 0;
-        }
+        }*/
+
+
+
 
         public void ResetGame()
         {

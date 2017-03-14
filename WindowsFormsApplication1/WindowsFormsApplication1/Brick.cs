@@ -15,7 +15,7 @@ namespace CasseBrique
         public int PositionY { get { return positionY; } }
         public int Longueur { get { return longueur; } }
         public int Largeur { get { return largeur; } }
-        public int Resistance { get { return resistance; } }
+        public int Resistance { get { return resistance; } set { resistance = value; } }
         private int resistance;
         private System.Drawing.Rectangle rect;
         public System.Drawing.Rectangle Rect
@@ -38,26 +38,13 @@ namespace CasseBrique
         public void dessinerBrick(Graphics g)
         {
             if (this.resistance == 1)
-                g.FillRectangle(new SolidBrush(Color.Red), this.positionX, this.positionY, longueur, largeur);
+                g.FillRectangle(new SolidBrush(Color.Red), rect);
             else if (this.resistance == 2)
-                g.FillRectangle(new SolidBrush(Color.Green), this.positionX, this.positionY, longueur, largeur);
+                g.FillRectangle(new SolidBrush(Color.Green), rect);
             else if (this.resistance == 3)
-                g.FillRectangle(new SolidBrush(Color.Blue), this.positionX, this.positionY, longueur, largeur);
-            g.DrawRectangle(new Pen(Color.White, 1), this.positionX - 1, this.positionY - 1, longueur + 1, largeur + 1);
-        }
-
-        public void redessinerBrick(Graphics g)
-        {
-            this.resistance -= 1;
-            if (this.resistance == 1)
-                g.FillRectangle(new SolidBrush(Color.Red), this.positionX, this.positionY, longueur, largeur);
-            else if (this.resistance == 2)
-                g.FillRectangle(new SolidBrush(Color.Green), this.positionX, this.positionY, longueur, largeur);
+                g.FillRectangle(new SolidBrush(Color.Blue), rect);
             else if (this.resistance == 0)
-            {
                 g.Clear(Color.White);
-            }
-            if (resistance > 0)
                 g.DrawRectangle(new Pen(Color.White, 1), this.positionX - 1, this.positionY - 1, longueur + 1, largeur + 1);
         }
     }

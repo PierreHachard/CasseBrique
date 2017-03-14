@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace CasseBrique
 {
-    class Boule
+    class balle
     {
         public static int diametre = 12;
         private Point centre;
@@ -20,7 +20,7 @@ namespace CasseBrique
         }
 
 
-        public Boule(Point Centre )
+        public balle(Point Centre )
         {
             this.centre = Centre;
             
