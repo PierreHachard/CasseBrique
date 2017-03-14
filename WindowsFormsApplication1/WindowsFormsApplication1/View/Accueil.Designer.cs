@@ -31,10 +31,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.nomCompte = new System.Windows.Forms.TextBox();
-            this.btnConnexion = new System.Windows.Forms.Button();
             this.password = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnInscription = new System.Windows.Forms.Button();
+            this.btnConnexion = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -48,6 +48,7 @@
             // 
             // label2
             // 
+            this.label2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label2.Location = new System.Drawing.Point(255, 202);
             this.label2.Name = "label2";
@@ -63,16 +64,6 @@
             this.nomCompte.Name = "nomCompte";
             this.nomCompte.Size = new System.Drawing.Size(428, 20);
             this.nomCompte.TabIndex = 1;
-            // 
-            // btnConnexion
-            // 
-            this.btnConnexion.Location = new System.Drawing.Point(293, 406);
-            this.btnConnexion.Name = "btnConnexion";
-            this.btnConnexion.Size = new System.Drawing.Size(130, 67);
-            this.btnConnexion.TabIndex = 3;
-            this.btnConnexion.Text = "Connexion";
-            this.btnConnexion.UseVisualStyleBackColor = true;
-            this.btnConnexion.Click += new System.EventHandler(this.btnConnexion_Click);
             // 
             // password
             // 
@@ -95,26 +86,66 @@
             // 
             // btnInscription
             // 
-            this.btnInscription.Location = new System.Drawing.Point(776, 406);
+            this.btnInscription.AutoEllipsis = true;
+            this.btnInscription.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.btnInscription.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnInscription.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnInscription.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnInscription.FlatAppearance.BorderSize = 3;
+            this.btnInscription.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray;
+            this.btnInscription.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
+            this.btnInscription.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInscription.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInscription.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnInscription.Location = new System.Drawing.Point(703, 406);
             this.btnInscription.Name = "btnInscription";
             this.btnInscription.Size = new System.Drawing.Size(130, 67);
             this.btnInscription.TabIndex = 4;
             this.btnInscription.Text = "Inscription";
-            this.btnInscription.UseVisualStyleBackColor = true;
+            this.btnInscription.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.btnInscription.UseVisualStyleBackColor = false;
             this.btnInscription.Click += new System.EventHandler(this.btnInscription_Click);
+            this.btnInscription.MouseEnter += new System.EventHandler(this.btnInscription_MouseEnter);
+            this.btnInscription.MouseLeave += new System.EventHandler(this.btnInscription_MouseLeave);
+            // 
+            // btnConnexion
+            // 
+            this.btnConnexion.AutoEllipsis = true;
+            this.btnConnexion.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.btnConnexion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnConnexion.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConnexion.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnConnexion.FlatAppearance.BorderSize = 3;
+            this.btnConnexion.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray;
+            this.btnConnexion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gray;
+            this.btnConnexion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConnexion.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConnexion.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnConnexion.Location = new System.Drawing.Point(255, 406);
+            this.btnConnexion.Name = "btnConnexion";
+            this.btnConnexion.Size = new System.Drawing.Size(130, 67);
+            this.btnConnexion.TabIndex = 9;
+            this.btnConnexion.Text = "Connexion";
+            this.btnConnexion.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.btnConnexion.UseVisualStyleBackColor = false;
+            this.btnConnexion.Click += new System.EventHandler(this.btnConnexion_Click);
+            this.btnConnexion.MouseEnter += new System.EventHandler(this.btnConnexion_MouseEnter);
+            this.btnConnexion.MouseLeave += new System.EventHandler(this.btnConnexion_MouseLeave);
             // 
             // Accueil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1225, 659);
+            this.Controls.Add(this.btnConnexion);
             this.Controls.Add(this.btnInscription);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.password);
-            this.Controls.Add(this.btnConnexion);
             this.Controls.Add(this.nomCompte);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.Name = "Accueil";
             this.Text = "Accueil";
             this.Load += new System.EventHandler(this.Accueil_Load);
@@ -128,9 +159,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox nomCompte;
-        private System.Windows.Forms.Button btnConnexion;
         private System.Windows.Forms.TextBox password;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnInscription;
+        private System.Windows.Forms.Button btnConnexion;
     }
 }

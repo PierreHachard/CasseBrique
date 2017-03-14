@@ -27,7 +27,37 @@ namespace CasseBrique
         }
 
 
+        private void btnInscription_Click(object sender, EventArgs e)
+        {
+            //On inscrit l'utilisateur dans la base de données (si son nom de compte n'existe pas déjà)
+            ViewModel_User vm_user = new ViewModel_User();
+            if (vm_user.IsInBdd(nomCompte.Text) == false)
+            {
+                vm_user.AddUser(nomCompte.Text, password.Text);
+                MessageBox.Show(this, "Inscription réussie", "Casse-Brique", MessageBoxButtons.OK, MessageBoxIcon.None);
+            }
+            else
+            {
+                MessageBox.Show(this, "Ce nom d'utilisateur existe déjà", "Casse-Brique", MessageBoxButtons.OK, MessageBoxIcon.None);
+            }
+            //btnInscription.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+        }
 
+        private void btnInscription_MouseEnter(object sender, EventArgs e)
+        {
+            btnInscription.FlatAppearance.BorderColor = System.Drawing.Color.LightGray;
+            btnInscription.FlatAppearance.BorderSize = 5;
+            btnInscription.UseVisualStyleBackColor = true;
+        }
+
+        private void btnInscription_MouseLeave(object sender, EventArgs e)
+        {
+            btnInscription.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            btnInscription.FlatAppearance.BorderSize = 3;
+            btnInscription.UseVisualStyleBackColor = false;
+        }
+
+        //Bouton de connexion
         private void btnConnexion_Click(object sender, EventArgs e)
         {
             /*
@@ -53,25 +83,25 @@ namespace CasseBrique
             */
             //Application.Exit();
             Jeu formJeu = new Jeu(this);
-            formJeu.Show(); 
+            formJeu.Show();
             this.Hide();// = false;
             //this.Visible = false;
         }
 
-        private void btnInscription_Click(object sender, EventArgs e)
+        private void btnConnexion_MouseLeave(object sender, EventArgs e)
         {
-            //On inscrit l'utilisateur dans la base de données (si son nom de compte n'existe pas déjà)
-            ViewModel_User vm_user = new ViewModel_User();
-            if (vm_user.IsInBdd(nomCompte.Text) == false)
-            {
-                vm_user.AddUser(nomCompte.Text, password.Text);
-                MessageBox.Show(this, "Inscription réussie", "Casse-Brique", MessageBoxButtons.OK, MessageBoxIcon.None);
-            }
-            else
-            {
-                MessageBox.Show(this, "Ce nom d'utilisateur existe déjà", "Casse-Brique", MessageBoxButtons.OK, MessageBoxIcon.None);
-            }            
+            btnConnexion.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            btnConnexion.FlatAppearance.BorderSize = 3;
+            btnConnexion.UseVisualStyleBackColor = false;
         }
+
+        private void btnConnexion_MouseEnter(object sender, EventArgs e)
+        {
+            btnConnexion.FlatAppearance.BorderColor = System.Drawing.Color.LightGray;
+            btnConnexion.FlatAppearance.BorderSize = 5;
+            btnConnexion.UseVisualStyleBackColor = true;
+        }
+
 
         
     }

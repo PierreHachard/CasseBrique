@@ -112,7 +112,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(494, 696);
+            this.ControlBox = false;
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
@@ -126,6 +128,8 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Jeu_FormClosed);
             this.Load += new System.EventHandler(this.Jeu_Load);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Jeu_MouseClick);
+            this.MouseEnter += new System.EventHandler(this.Jeu_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.Jeu_MouseLeave);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Jeu_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

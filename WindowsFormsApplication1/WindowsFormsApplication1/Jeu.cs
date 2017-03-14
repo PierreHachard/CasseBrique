@@ -27,6 +27,9 @@ namespace CasseBrique
         {
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            SetStyle(System.Windows.Forms.ControlStyles.AllPaintingInWmPaint, true);
+            this.TopMost = true;
+            this.FormBorderStyle = FormBorderStyle.None;
 
             //La balle
             balle.Location = new System.Drawing.Point(265, 568);
@@ -78,13 +81,14 @@ namespace CasseBrique
 
         private void Jeu_Load(object sender, EventArgs e)
         {
-
+            Cursor.Hide();
         }
 
 
 
         private void Jeu_FormClosed(object sender, FormClosedEventArgs e)
         {
+            Cursor.Show();
             this.accueil.Visible = true;
         }
 
@@ -98,7 +102,7 @@ namespace CasseBrique
         {
 
             // enlève le curseur 
-            Cursor.Current = null;
+            //Cursor.Current = null;
 
             pictureBarre1.deplacerBarre(e.X, this);
             if (mouvementBalle.Enabled == false)
@@ -288,6 +292,18 @@ namespace CasseBrique
         private void pictureBox4_Click(object sender, EventArgs e)
         {
             pictureBox4.Hide();
+        }
+
+        private void Jeu_MouseEnter(object sender, EventArgs e)
+        {
+            //Cursor.Hide();
+            //Cursor.Current = null;
+        }
+
+        private void Jeu_MouseLeave(object sender, EventArgs e)
+        {
+            //Cursor.Show();
+            //Cursor.Current = Cursor;
         }
     }
 }
