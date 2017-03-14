@@ -33,20 +33,20 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBarre1 = new CasseBrique.PictureBarre();
-            this.balle = new CasseBrique.PictureBoule();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBarre1 = new CasseBrique.PictureBarre();
+            this.balle = new CasseBrique.Pictureballe();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBarre1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.balle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // mouvementBalle
             // 
-            this.mouvementBalle.Interval = 5;
+            this.mouvementBalle.Interval = 15;
             this.mouvementBalle.Tick += new System.EventHandler(this.mouvementBalle_Tick);
             // 
             // pictureBox1
@@ -76,6 +76,16 @@
             this.pictureBox3.TabIndex = 4;
             this.pictureBox3.TabStop = false;
             // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Location = new System.Drawing.Point(-1, 0);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(495, 702);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 5;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
+            // 
             // pictureBarre1
             // 
             this.pictureBarre1.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -96,16 +106,6 @@
             this.balle.Size = new System.Drawing.Size(64, 25);
             this.balle.TabIndex = 0;
             this.balle.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Location = new System.Drawing.Point(-1, 0);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(495, 702);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 5;
-            this.pictureBox4.TabStop = false;
-            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // Jeu
             // 
@@ -130,9 +130,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBarre1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.balle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -140,7 +140,7 @@
         #endregion
 
         private System.Windows.Forms.Timer mouvementBalle;
-        private PictureBoule balle;
+        private Pictureballe balle;
         private PictureBarre pictureBarre1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;

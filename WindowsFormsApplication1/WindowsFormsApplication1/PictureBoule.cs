@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace CasseBrique
 {
-    class PictureBoule : OvalPictureBox
+    class Pictureballe : OvalPictureBox
     {
         public int compteurX = 0;
         public int compteurY = 0;
@@ -21,7 +21,7 @@ namespace CasseBrique
                 this.Left = centre.X - this.Width / 2; }
         }
 
-        public PictureBoule()
+        public Pictureballe()
         {
 
         }
@@ -29,22 +29,22 @@ namespace CasseBrique
 
         public void deplacerBalle(int collision)
         {
-
             if (Centre.X < 2 || (compteurX == 0 && collision ==0) || collision == 4) // vers la droite
             {
                 compteurX = 0;
-                Centre =  new Point(this.centre.X + 5, this.centre.Y);
+                this.centre.X += 5;
                 if (Centre.X >= 490)
                     compteurX = 1;
+                
             }
             else if (Centre.X >= 490 || (compteurX == 1 && collision ==0) || collision == 3) // vers la gauche
             {
                 compteurX = 1;
-                Centre = new Point(this.centre.X - 5, this.centre.Y);
+                this.centre.X -= 5;  
                 if (Centre.X < 2)
                     compteurX = 0;
             }
-            if (/*this.centre.Y >= 600 || */(compteurY == 0 && collision ==0) || collision == 1 || collision == 5) // vers le haut
+            if ((compteurY == 0 && collision ==0) || collision == 1 || collision == 5) // vers le haut
             {
                 compteurY = 0;
                 Centre = new Point(this.centre.X, this.centre.Y - 5);
@@ -56,7 +56,6 @@ namespace CasseBrique
                 compteurY = 1;
                 Centre = new Point(this.centre.X, this.centre.Y + 5);
             }
-
         }
 
         public void DeplacerBalleSurPlateau(PictureBarre plateau)
