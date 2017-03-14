@@ -16,8 +16,12 @@ namespace CasseBrique
         private Accueil accueil;
         public int tick = 0;
         private int viesRestantes = 3;
-        private Bitmap viesImage =  new Bitmap(@"C:\Users\maxim\Source\Repos\CasseBrique2\WindowsFormsApplication1\coeur.jpg");
-        private Bitmap gameOverImg = new Bitmap(@"C:\Users\maxim\Source\Repos\CasseBrique2\WindowsFormsApplication1\gameOver.jpg");
+        private Bitmap viesImage = new Bitmap(@"..\..\..\coeur.jpg");
+        private Bitmap gameOverImg = new Bitmap(@"..\..\..\gameOver.jpg"); //depuis le main.exe
+   
+        
+
+
         public Jeu(Accueil accueil)
         {
             InitializeComponent();
