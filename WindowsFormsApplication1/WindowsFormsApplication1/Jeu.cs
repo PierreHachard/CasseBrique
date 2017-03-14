@@ -20,8 +20,12 @@ namespace CasseBrique
         public int niveau = 1;
         public int hit = 0;
         private int viesRestantes = 3;
-        private Bitmap viesImage =  new Bitmap(@"../../../coeur.jpg");
-        private Bitmap gameOverImg = new Bitmap(@"../../../GameOver.jpg");
+        private Bitmap viesImage = new Bitmap(@"..\..\..\coeur.jpg");
+        private Bitmap gameOverImg = new Bitmap(@"..\..\..\gameOver.jpg"); //depuis le main.exe
+   
+        
+
+
         public Jeu(Accueil accueil)
         {
             InitializeComponent();
