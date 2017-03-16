@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BitmapScore.cs" />
     <Compile Include="PictureBarre.cs">
       <SubType>Component</SubType>
     </Compile>

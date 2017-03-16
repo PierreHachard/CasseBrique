@@ -49,28 +49,29 @@ namespace CasseBrique
             Point p4 = new Point(this.centre.X + 20, this.centre.Y);
             Point p5 = new Point(this.centre.X + 25, this.centre.Y);
             Point p6 = new Point(this.centre.X - 5, this.centre.Y);
-            Point p7 = new Point(this.centre.X - 15, this.centre.Y);
-            Point p8 = new Point(this.centre.X - 20, this.centre.Y);
-            Point p9 = new Point(this.centre.X - 25, this.centre.Y);
+            Point p7 = new Point(this.centre.X - 10, this.centre.Y);
+            Point p8 = new Point(this.centre.X - 15, this.centre.Y);
+            Point p9 = new Point(this.centre.X - 20, this.centre.Y);
+            Point p10 = new Point(this.centre.X - 25, this.centre.Y);
             if (balle.Centre.X > p0.X && balle.Centre.X < p1.X )
-            {
-                return 10;
-            }
-            if (balle.Centre.X > p1.X && balle.Centre.X < p2.X )
             {
                 return 9;
             }
-            if (balle.Centre.X > p2.X && balle.Centre.X < p3.X )
+            if (balle.Centre.X > p1.X && balle.Centre.X < p2.X )
             {
                 return 8;
             }
-            if (balle.Centre.X > p3.X && balle.Centre.X < p4.X )
+            if (balle.Centre.X > p2.X && balle.Centre.X < p3.X )
             {
                 return 7;
             }
-            if (balle.Centre.X > p4.X && balle.Centre.X < p5.X )
+            if (balle.Centre.X > p3.X && balle.Centre.X < p4.X )
             {
                 return 6;
+            }
+            if (balle.Centre.X > p4.X && balle.Centre.X < p5.X )
+            {
+                return 5;
             }
             if (balle.Centre.X > p6.X && balle.Centre.X < p0.X )
             {
@@ -87,6 +88,10 @@ namespace CasseBrique
             if (balle.Centre.X > p9.X && balle.Centre.X < p8.X )
             {
                 return 8;
+            }
+            if (balle.Centre.X > p10.X && balle.Centre.X < p9.X)
+            {
+                return 9;
             }
             return 5;
         }

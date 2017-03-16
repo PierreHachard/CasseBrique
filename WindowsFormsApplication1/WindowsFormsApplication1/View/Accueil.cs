@@ -8,13 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
-
+using CasseBrique.Model;
 using CasseBrique.ViewModel;
+using System.Data.Entity;
 
 namespace CasseBrique
 {
     public partial class Accueil : Form
     {
+        public static string username;
+        public static int highscore;
+
         public Accueil()
         {
             InitializeComponent();
@@ -34,6 +38,13 @@ namespace CasseBrique
         private void Accueil_Load(object sender, EventArgs e)
         {
             Jeu formJeu = new Jeu(this);
+          /*  IDatabaseInitializer<BddContext> init = new CreateDatabaseIfNotExists<BddContext>();
+            Database.SetInitializer(init);
+            init.InitializeDatabase(new BddContext());
+            using (IDal dal = new Dal())
+            {
+                dal.AddUser(new Model_User { Id = 1, Pseudo = "toto" });
+            }*/
             //formJeu.Show(); 
         }
 
@@ -57,7 +68,7 @@ namespace CasseBrique
         //Bouton de connexion
         private void btnConnexion_Click(object sender, EventArgs e)
         {
-            /*
+            Jeu formJeu = new Jeu(this);
             //String nomDeCompte = nomCompte.Text;
             Console.WriteLine("Nom de compte : "+nomCompte.Text+", mot de passe : "+password.Text);
 
@@ -70,18 +81,18 @@ namespace CasseBrique
             else if (vm_user.IsInBdd(nomCompte.Text, password.Text) == true)
             {
                 //si il a pu se connecter
-               // Jeu formJeu = new Jeu(this);
-                //formJeu.Show(); 
+                Accueil.highscore = vm_user.getHighscore(nomCompte.Text);
+                Accueil.username = nomCompte.Text;
+                formJeu.Show();
+                this.Hide();
             }
             else
             {
                 MessageBox.Show(this, "Le mot de passe ne correspond pas au nom de compte", "Casse-Brique", MessageBoxButtons.OK, MessageBoxIcon.None);
             }
-            */
             //Application.Exit();
-            Jeu formJeu = new Jeu(this);
-            formJeu.Show();
-            this.Hide();// = false;
+            // = false;
+
             //this.Visible = false;
         }
 
