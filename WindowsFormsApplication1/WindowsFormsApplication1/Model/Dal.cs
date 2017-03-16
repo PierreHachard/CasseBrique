@@ -25,6 +25,11 @@ namespace CasseBrique.Model
             bdd.SaveChanges();
         }
 
+        public void setScore()
+        {
+            bdd.SaveChanges();
+        }
+
         public void Dispose()
         {
             bdd.Dispose();

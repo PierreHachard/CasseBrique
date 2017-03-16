@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using CasseBrique.ViewModel;
+
 namespace CasseBrique
 {
     public partial class Jeu : Form
@@ -15,10 +17,12 @@ namespace CasseBrique
         private Niveau niveau1;
         private Accueil accueil;
         public Point tmp;
+        public BitmapScore scoreb = new BitmapScore();
         public int angle = 5;
         public int score = 0;
         public int niveau = 1;
         public int hit = 0;
+        public ViewModel_User vm_user = new ViewModel_User();
         private int viesRestantes = 3;
         private Bitmap viesImage = new Bitmap(@"..\..\..\coeur.jpg");
         private Bitmap gameOverImg = new Bitmap(@"..\..\..\gameOver.jpg"); //depuis le main.exe
@@ -31,8 +35,8 @@ namespace CasseBrique
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             SetStyle(System.Windows.Forms.ControlStyles.AllPaintingInWmPaint, true);
-            this.TopMost = true;
-            this.FormBorderStyle = FormBorderStyle.None;
+            //this.TopMost = true;
+            //this.FormBorderStyle = FormBorderStyle.;
 
             //La balle
             balle.Location = new System.Drawing.Point(265, 568);
@@ -40,7 +44,8 @@ namespace CasseBrique
             balle.Size = new System.Drawing.Size(12, 12);
             balle.Centre = balle.Location;
 
-            label1.Text = "Score : " + score;
+            //label1.Text = "Score : " + score;
+
 
             //La barre
             pictureBarre1.Location = new System.Drawing.Point(265, 580); //x,y
@@ -48,7 +53,7 @@ namespace CasseBrique
             pictureBarre1.Size = new System.Drawing.Size(50, 15);
             pictureBarre1.Centre = pictureBarre1.Location;
 
-            int x, y;
+          /*  int x, y;
 
             // Loop through the images pixels to reset color.
             for (x = 0; x < viesImage.Width; x++)
@@ -70,7 +75,7 @@ namespace CasseBrique
                     Color newColor = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
                     gameOverImg.SetPixel(x, y, newColor);
                 }
-            }
+            }*/
 
             // Set the PictureBox to display the image.
             pictureBox1.Image = viesImage;
@@ -86,6 +91,7 @@ namespace CasseBrique
 
         private void Jeu_Load(object sender, EventArgs e)
         {
+            label2.Text = "Highscore : " + Accueil.highscore;
             Cursor.Hide();
         }
 
@@ -282,7 +288,13 @@ namespace CasseBrique
             balle.Location = new System.Drawing.Point(265, 568);
             balle.Size = new System.Drawing.Size(12, 12);
             balle.Centre = balle.Location;
-
+            if (Accueil.highscore < score)
+            {
+                Accueil.highscore = score;
+                vm_user.setHighscore(Accueil.username, Accueil.highscore);
+                label2.Text = "HighScore :" + Accueil.highscore;
+                // rentrer le highscore dans la bdd
+            }
             //La barre
             pictureBarre1.Location = new System.Drawing.Point(265, 580); //x,y
             pictureBarre1.Size = new System.Drawing.Size(50, 15);

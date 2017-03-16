@@ -57,5 +57,38 @@ namespace CasseBrique.ViewModel
             }
             return false;
         }
+
+        public int getHighscore(string name)
+        {
+            Dal dal = new Dal();
+            List<Model_User> users = new List<Model_User>();
+            users = dal.GetUsers();
+            foreach (Model_User user in users)
+            {
+                if (user.Pseudo == name)
+                {
+                    return user.HighScore;
+                }
+            }
+            return 0;
+        }
+
+        public void setHighscore(string name, int score)
+        {
+            Dal dal = new Dal();
+            List<Model_User> users = new List<Model_User>();
+            users = dal.GetUsers();
+            foreach (Model_User user in users)
+            {
+                if (user.Pseudo == name)
+                {
+                    Console.WriteLine("il est dedans" + name + " s:"+score +"hs :" + user.HighScore +" pseudo "+ user.Pseudo);
+                    user.HighScore = score;
+                    dal.setScore();
+                }
+            }
+        }
+
+
     }
 }
