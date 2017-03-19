@@ -45,6 +45,7 @@ namespace CasseBrique
             balle.Centre = balle.Location;
 
             //label1.Text = "Score : " + score;
+            scoreb.convertToBitmap(score, pictureBox5, pictureBox6, pictureBox7);
 
 
             //La barre
@@ -131,7 +132,8 @@ namespace CasseBrique
                 balle.deplacerBalle(hit, balle , pictureBarre1, ref angle);
                 hit = 0;
             }
-            label1.Text = "Score : " + score;
+            //label1.Text = "Score : " + score;
+            scoreb.convertToBitmap(score, pictureBox5, pictureBox6, pictureBox7);
             if (niveau1.niveauTerminé())
                 nextLevel();
 
@@ -308,7 +310,8 @@ namespace CasseBrique
             niveau =  1;
             niveau1 = new Niveau(niveau);
             score = 0;
-            label1.Text = "Score : " + score;
+            //label1.Text = "Score : " + score;
+            scoreb.convertToBitmap(score, pictureBox5, pictureBox6, pictureBox7);
             Refresh();
 
         }

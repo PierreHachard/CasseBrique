@@ -34,22 +34,21 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBarre1 = new CasseBrique.PictureBarre();
-            this.balle = new CasseBrique.Pictureballe();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBarre1 = new CasseBrique.PictureBarre();
+            this.balle = new CasseBrique.Pictureballe();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBarre1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.balle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBarre1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.balle)).BeginInit();
             this.SuspendLayout();
             // 
             // mouvementBalle
@@ -94,15 +93,6 @@
             this.pictureBox4.TabStop = false;
             this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click_1);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(202, 662);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "label1";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -111,27 +101,6 @@
             this.label2.Size = new System.Drawing.Size(55, 13);
             this.label2.TabIndex = 7;
             this.label2.Text = "Highscore";
-            // 
-            // pictureBarre1
-            // 
-            this.pictureBarre1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBarre1.BackColor = System.Drawing.Color.Black;
-            this.pictureBarre1.Centre = new System.Drawing.Point(0, 0);
-            this.pictureBarre1.Location = new System.Drawing.Point(63, 530);
-            this.pictureBarre1.Name = "pictureBarre1";
-            this.pictureBarre1.Size = new System.Drawing.Size(259, 15);
-            this.pictureBarre1.TabIndex = 1;
-            this.pictureBarre1.TabStop = false;
-            // 
-            // balle
-            // 
-            this.balle.BackColor = System.Drawing.Color.DarkBlue;
-            this.balle.Centre = new System.Drawing.Point(0, 0);
-            this.balle.Location = new System.Drawing.Point(255, 370);
-            this.balle.Name = "balle";
-            this.balle.Size = new System.Drawing.Size(64, 25);
-            this.balle.TabIndex = 0;
-            this.balle.TabStop = false;
             // 
             // pictureBox5
             // 
@@ -160,6 +129,27 @@
             this.pictureBox7.TabIndex = 10;
             this.pictureBox7.TabStop = false;
             // 
+            // pictureBarre1
+            // 
+            this.pictureBarre1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBarre1.BackColor = System.Drawing.Color.Black;
+            this.pictureBarre1.Centre = new System.Drawing.Point(0, 0);
+            this.pictureBarre1.Location = new System.Drawing.Point(63, 530);
+            this.pictureBarre1.Name = "pictureBarre1";
+            this.pictureBarre1.Size = new System.Drawing.Size(259, 15);
+            this.pictureBarre1.TabIndex = 1;
+            this.pictureBarre1.TabStop = false;
+            // 
+            // balle
+            // 
+            this.balle.BackColor = System.Drawing.Color.DarkBlue;
+            this.balle.Centre = new System.Drawing.Point(0, 0);
+            this.balle.Location = new System.Drawing.Point(255, 370);
+            this.balle.Name = "balle";
+            this.balle.Size = new System.Drawing.Size(64, 25);
+            this.balle.TabIndex = 0;
+            this.balle.TabStop = false;
+            // 
             // Jeu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -167,17 +157,16 @@
             this.BackColor = System.Drawing.Color.White;
             this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(494, 696);
-            this.Controls.Add(this.pictureBox7);
-            this.Controls.Add(this.pictureBox6);
-            this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBarre1);
             this.Controls.Add(this.balle);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.pictureBox7);
+            this.Controls.Add(this.pictureBox6);
+            this.Controls.Add(this.pictureBox5);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.HelpButton = true;
@@ -193,11 +182,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBarre1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.balle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBarre1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.balle)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -212,7 +201,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox6;
