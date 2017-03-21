@@ -18,10 +18,35 @@ namespace CasseBrique
     {
         public static string username;
         public static int highscore;
+        public int r = 0;
+        public int g = 0;
+        public int b = 0;
+        public int r1 = 0;
+        public int g1 = 0;
+        public int b1 = 0;
+        public int r2 = 0;
+        public int g2 = 0;
+        public int b2 = 0;
+        public int r3 = 0;
+        public int g3 = 0;
+        public int b3 = 0;
+
 
         public Accueil()
         {
             InitializeComponent();
+            r = password.BackColor.R;
+            g = password.BackColor.G;
+            b = password.BackColor.B;
+            r1 = lPassword.ForeColor.R;
+            g1 = lPassword.ForeColor.G;
+            b1 = lPassword.ForeColor.B;
+            r2 = nomCompte.BackColor.R;
+            g2 = nomCompte.BackColor.G;
+            b2 = nomCompte.BackColor.B;
+            r3 = lUsername.ForeColor.R;
+            g3 = lUsername.ForeColor.G;
+            b3 = lUsername.ForeColor.B;
 
             //Boucle for pour l'affichage de l'image
             /*for (int x = 0; x < accueilFond.Width; x++)
@@ -93,7 +118,7 @@ namespace CasseBrique
             //Application.Exit();
             // = false;
 
-            //this.Visible = false;
+           // this.Visible = true;
         }
 
         //Bouton connexion
@@ -130,31 +155,31 @@ namespace CasseBrique
         //Username Label (lUsername) and TextField (nomCompte) animations
         private void nomCompte_Enter(object sender, EventArgs e)
         {
-            nomCompte.BackColor = Color.FromArgb(nomCompte.BackColor.R + 30, nomCompte.BackColor.G + 30, nomCompte.BackColor.B + 30);
+            nomCompte.BackColor = Color.FromArgb(r2 + 30, g2 + 30, b2 + 30);
             nomCompte.BorderStyle = BorderStyle.Fixed3D;
-            //lUsername.ForeColor = Color.FromArgb(lUsername.ForeColor.R + 50, lUsername.ForeColor.G + 50, lUsername.ForeColor.B + 50);
+            lUsername.ForeColor = Color.FromArgb(r3 + 50, g3 + 50, b3 + 50);
         }
 
         private void nomCompte_Leave(object sender, EventArgs e)
         {
-            nomCompte.BackColor = Color.FromArgb(nomCompte.BackColor.R - 30, nomCompte.BackColor.G - 30, nomCompte.BackColor.B - 30);
+            nomCompte.BackColor = Color.FromArgb(r2, g2, b2);
             nomCompte.BorderStyle = BorderStyle.FixedSingle;
-            //lUsername.ForeColor = Color.FromArgb(lUsername.ForeColor.R - 50, lUsername.ForeColor.G - 50, lUsername.ForeColor.B - 50);
+            lUsername.ForeColor = Color.FromArgb(r3, g3, b3);
         }
 
         //Password Label (lPassword) and TextField (password) animations
         private void password_Enter(object sender, EventArgs e)
         {
-            password.BackColor = Color.FromArgb(password.BackColor.R + 30, password.BackColor.G + 30, password.BackColor.B + 30);
+            password.BackColor = Color.FromArgb(r + 30, g + 30, b + 30);
             password.BorderStyle = BorderStyle.Fixed3D;
-            lPassword.ForeColor = Color.FromArgb(lPassword.ForeColor.R + 50, lPassword.ForeColor.G + 50, lPassword.ForeColor.B + 50);
+            lPassword.ForeColor = Color.FromArgb(r1 + 50, g1 + 50, b1 + 50);
         }
 
         private void password_Leave(object sender, EventArgs e)
         {
-            password.BackColor = Color.FromArgb(password.BackColor.R - 30, password.BackColor.G - 30, password.BackColor.B - 30);
+            password.BackColor = Color.FromArgb(r, g , b);
             password.BorderStyle = BorderStyle.FixedSingle;
-            lPassword.ForeColor = Color.FromArgb(lPassword.ForeColor.R - 50, lPassword.ForeColor.G - 50, lPassword.ForeColor.B - 50);
+            lPassword.ForeColor = Color.FromArgb(r1, g1, b1);
         }
 
         private void nomCompte_MouseClick(object sender, MouseEventArgs e)
