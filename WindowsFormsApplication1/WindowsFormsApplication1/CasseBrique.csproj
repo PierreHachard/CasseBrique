@@ -56,14 +56,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BitmapScore.cs" />
-    <Compile Include="PictureBarre.cs">
+    <Compile Include="ViewModel\BitmapScore.cs" />
+    <Compile Include="ViewModel\PictureBarre.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PictureBoule.cs">
+    <Compile Include="ViewModel\PictureBoule.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="OvalPictureBox.cs">
+    <Compile Include="ViewModel\OvalPictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="View\Accueil.cs">
@@ -72,20 +72,18 @@
     <Compile Include="View\Accueil.Designer.cs">
       <DependentUpon>Accueil.cs</DependentUpon>
     </Compile>
-    <Compile Include="Barre.cs" />
-    <Compile Include="Brick.cs" />
-    <Compile Include="Boule.cs" />
-    <Compile Include="Jeu.cs">
+    <Compile Include="ViewModel\Brick.cs" />
+    <Compile Include="View\Jeu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Jeu.Designer.cs">
+    <Compile Include="View\Jeu.Designer.cs">
       <DependentUpon>Jeu.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\BddContext.cs" />
     <Compile Include="Model\Dal.cs" />
     <Compile Include="Model\IDal.cs" />
     <Compile Include="Model\Model_User.cs" />
-    <Compile Include="Niveau.cs" />
+    <Compile Include="ViewModel\Niveau.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\ViewModel_User.cs" />
@@ -95,7 +93,7 @@
     <EmbeddedResource Include="View\Accueil.resx">
       <DependentUpon>Accueil.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Jeu.resx">
+    <EmbeddedResource Include="View\Jeu.resx">
       <DependentUpon>Jeu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -47,17 +47,6 @@ namespace CasseBrique
             r3 = lUsername.ForeColor.R;
             g3 = lUsername.ForeColor.G;
             b3 = lUsername.ForeColor.B;
-
-            //Boucle for pour l'affichage de l'image
-            /*for (int x = 0; x < accueilFond.Width; x++)
-            {
-                for (int y = 0; y < accueilFond.Height; y++)
-                {
-                    Color pixelColor = accueilFond.GetPixel(x, y);
-                    Color newColor = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
-                    viesImage.SetPixel(x, y, newColor);
-                }
-            }*/
         }
 
         private void Accueil_Load(object sender, EventArgs e)
@@ -102,6 +91,7 @@ namespace CasseBrique
             if (vm_user.IsInBdd(nomCompte.Text) == false) //le nom de compte n'est pas dans la base
             {
                 MessageBox.Show(this, "Ce nom de compte n'existe pas", "Casse-Brique", MessageBoxButtons.OK, MessageBoxIcon.None);
+                this.Show();
             }
             else if (vm_user.IsInBdd(nomCompte.Text, password.Text) == true)
             {
@@ -114,6 +104,7 @@ namespace CasseBrique
             else
             {
                 MessageBox.Show(this, "Le mot de passe ne correspond pas au nom de compte", "Casse-Brique", MessageBoxButtons.OK, MessageBoxIcon.None);
+                this.Show();
             }
             //Application.Exit();
             // = false;

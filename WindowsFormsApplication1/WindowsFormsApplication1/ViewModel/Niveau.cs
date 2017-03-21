@@ -188,10 +188,10 @@ namespace CasseBrique
                     {
                      Brick b = listeBrick[niveau, i];
                     g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 2, b.Largeur + 2));
-                    if (b.Rect.Contains(new Point(p.X + 4, p.Y))
-                            || b.Rect.Contains(new Point(p.X - 4, p.Y))
-                            || b.Rect.Contains(new Point(p.X, p.Y - 4))
-                            || b.Rect.Contains(new Point(p.X, p.Y + 4)))
+                    if (b.Rect.Contains(new Point(p.X + 6, p.Y))
+                            || b.Rect.Contains(new Point(p.X - 6, p.Y))
+                            || b.Rect.Contains(new Point(p.X, p.Y - 6))
+                            || b.Rect.Contains(new Point(p.X, p.Y + 6)))
                         {
                         SoundPlayer explosion = new SoundPlayer(@"../../../ah2.wav");
                         explosion.Play();

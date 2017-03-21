@@ -30,10 +30,10 @@ namespace CasseBrique
 
         public void deplacerBarre(int sourisX, Jeu j)
         {
-            if (sourisX <= this.Width/2)
+            if (sourisX <= this.Width / 2)
                 Centre = new Point(this.Width / 2, this.centre.Y);
-            else if (sourisX >= j.Size.Width - this.Width/2)
-                Centre = new Point(j.Size.Width - this.Width / 2, this.centre.Y);
+            else if (sourisX >= j.Width - this.Width/2 - Jeu.BORDER_SIZE) 
+                Centre = new Point(j.Width - this.Width/2 - Jeu.BORDER_SIZE, this.centre.Y);
             else
             {
                 Centre = new Point(sourisX, this.centre.Y);

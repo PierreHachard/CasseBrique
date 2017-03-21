@@ -14,6 +14,7 @@ namespace CasseBrique
 {
     public partial class Jeu : Form
     {
+        public static int BORDER_SIZE = 20;
         private Niveau niveau1;
         private Accueil accueil;
         public Point tmp;
@@ -53,30 +54,6 @@ namespace CasseBrique
             pictureBarre1.Name = "pictureBarre1";
             pictureBarre1.Size = new System.Drawing.Size(50, 15);
             pictureBarre1.Centre = pictureBarre1.Location;
-
-          /*  int x, y;
-
-            // Loop through the images pixels to reset color.
-            for (x = 0; x < viesImage.Width; x++)
-            {
-                for (y = 0; y < viesImage.Height; y++)
-                {
-                    Color pixelColor = viesImage.GetPixel(x, y);
-                    Color newColor = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
-                    viesImage.SetPixel(x, y, newColor);
-                }
-            }
-            x = 0;
-            y = 0;
-            for (x = 0; x < gameOverImg.Width; x++)
-            {
-                for (y = 0; y < gameOverImg.Height; y++)
-                {
-                    Color pixelColor = gameOverImg.GetPixel(x, y);
-                    Color newColor = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
-                    gameOverImg.SetPixel(x, y, newColor);
-                }
-            }*/
 
             // Set the PictureBox to display the image.
             pictureBox1.Image = viesImage;
@@ -202,76 +179,7 @@ namespace CasseBrique
                 return 5;
             return 0;
         }
-       /* private int collision(Pictureballe balle, int niveau)
-        {
-            int i = 0;
-            niveau -= 1;
-            for (i = 0; i < 25; i++)
-            {
-                Brick b = niveau1.ListeBrick1[niveau, i];
-                if ( b!=null && b.Resistance!=0)
-                {
-                    Graphics g;
-                    g = this.CreateGraphics();
-                    if (b.Rect.Contains(new Point(balle.Centre.X + balle.Width / 2, balle.Centre.Y)))
-                    {
-
-                        g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 2, b.Largeur + 2));
-                        if(tick == 0){
-                            b.redessinerBrick(g);
-                            niveau1.ListeBrick1[niveau, i] = b;
-                            g.Dispose();
-                            
-                        }
-                        return 3;
-
-                    }
-                    else if (b.Rect.Contains(new Point(balle.Centre.X - 6, balle.Centre.Y)))
-                    {
-                        g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 2, b.Largeur + 2));
-                        if (tick == 0)
-                        {
-                            b.redessinerBrick(g);
-                            niveau1.ListeBrick1[niveau, i] = b;                  
-                            g.Dispose();
-                            
-                        }
-                        return 4;
-                    }
-                    else if (b.Rect.Contains(new Point(balle.Centre.X, balle.Centre.Y - 6)))
-                    {
-                        g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 2, b.Largeur + 2));
-                        if (tick == 0){
-                            b.redessinerBrick(g);
-                            niveau1.ListeBrick1[niveau, i] = b;
-                            g.Dispose();
-                            
-                        }
-                        return 2;
-                    }
-                    else if (b.Rect.Contains(new Point(balle.Centre.X, balle.Centre.Y + 6)))
-                    {
-                        g.Clip = new Region(new Rectangle(b.PositionX - 1, b.PositionY - 1, b.Longueur + 2, b.Largeur + 2));
-                        if (tick == 0)
-                       {
-                            b.redessinerBrick(g);
-                            niveau1.ListeBrick1[niveau, i] = b;
-                            g.Dispose();
-                       }
-                        return 1;
-                    }
-                }
-            }
-            if ((balle.Centre.Y >= pictureBarre1.Centre.Y - pictureBarre1.Height/2 && (balle.Centre.Y <= pictureBarre1.Centre.Y - pictureBarre1.Height / 2 + 2)) && ( (balle.Centre.X < pictureBarre1.Centre.X + pictureBarre1.Width / 2) && (balle.Centre.X > pictureBarre1.Centre.X - pictureBarre1.Width / 2)))
-            {
-                return 5;
-            }
-            return 0;
-        }*/
-
-
-
-
+       
         public void ResetGame()
         {
             balle.Location = new System.Drawing.Point(265, 568);
