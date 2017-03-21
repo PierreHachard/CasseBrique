@@ -22,29 +22,11 @@ namespace CasseBrique
         public Accueil()
         {
             InitializeComponent();
-
-            //Boucle for pour l'affichage de l'image
-            /*for (int x = 0; x < accueilFond.Width; x++)
-            {
-                for (int y = 0; y < accueilFond.Height; y++)
-                {
-                    Color pixelColor = accueilFond.GetPixel(x, y);
-                    Color newColor = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
-                    viesImage.SetPixel(x, y, newColor);
-                }
-            }*/
         }
 
         private void Accueil_Load(object sender, EventArgs e)
         {
             Jeu formJeu = new Jeu(this);
-          /*  IDatabaseInitializer<BddContext> init = new CreateDatabaseIfNotExists<BddContext>();
-            Database.SetInitializer(init);
-            init.InitializeDatabase(new BddContext());
-            using (IDal dal = new Dal())
-            {
-                dal.AddUser(new Model_User { Id = 1, Pseudo = "toto" });
-            }*/
             //formJeu.Show(); 
         }
 
@@ -91,9 +73,6 @@ namespace CasseBrique
                 MessageBox.Show(this, "Le mot de passe ne correspond pas au nom de compte", "Casse-Brique", MessageBoxButtons.OK, MessageBoxIcon.None);
             }
             //Application.Exit();
-            // = false;
-
-            //this.Visible = false;
         }
 
         //Bouton connexion
@@ -130,31 +109,32 @@ namespace CasseBrique
         //Username Label (lUsername) and TextField (nomCompte) animations
         private void nomCompte_Enter(object sender, EventArgs e)
         {
-            nomCompte.BackColor = Color.FromArgb(nomCompte.BackColor.R + 30, nomCompte.BackColor.G + 30, nomCompte.BackColor.B + 30);
+            nomCompte.BackColor = Color.FromArgb((byte)nomCompte.BackColor.R + (byte)30, (byte)nomCompte.BackColor.G + (byte)30, (byte)nomCompte.BackColor.B + (byte)30);
             nomCompte.BorderStyle = BorderStyle.Fixed3D;
             //lUsername.ForeColor = Color.FromArgb(lUsername.ForeColor.R + 50, lUsername.ForeColor.G + 50, lUsername.ForeColor.B + 50);
         }
 
         private void nomCompte_Leave(object sender, EventArgs e)
         {
-            nomCompte.BackColor = Color.FromArgb(nomCompte.BackColor.R - 30, nomCompte.BackColor.G - 30, nomCompte.BackColor.B - 30);
+            nomCompte.BackColor = Color.FromArgb((byte)nomCompte.BackColor.R - (byte)30, (byte)nomCompte.BackColor.G - (byte)30, (byte)nomCompte.BackColor.B - (byte)30);
+            //nomCompte.BackColor = Color.FromKnownColor(nomCompte.BackColor);
             nomCompte.BorderStyle = BorderStyle.FixedSingle;
-            //lUsername.ForeColor = Color.FromArgb(lUsername.ForeColor.R - 50, lUsername.ForeColor.G - 50, lUsername.ForeColor.B - 50);
+            //lUsername.ForeColor = Color.FromArgb(lUsername.ForeColor.R - 100, lUsername.ForeColor.G - 100, lUsername.ForeColor.B - 100);
         }
 
         //Password Label (lPassword) and TextField (password) animations
         private void password_Enter(object sender, EventArgs e)
         {
-            password.BackColor = Color.FromArgb(password.BackColor.R + 30, password.BackColor.G + 30, password.BackColor.B + 30);
+            //password.BackColor = Color.FromArgb(password.BackColor.R + 30, password.BackColor.G + 30, password.BackColor.B + 30);
             password.BorderStyle = BorderStyle.Fixed3D;
-            lPassword.ForeColor = Color.FromArgb(lPassword.ForeColor.R + 50, lPassword.ForeColor.G + 50, lPassword.ForeColor.B + 50);
+            //lPassword.ForeColor = Color.FromArgb(lPassword.ForeColor.R + 50, lPassword.ForeColor.G + 50, lPassword.ForeColor.B + 50);
         }
 
         private void password_Leave(object sender, EventArgs e)
         {
-            password.BackColor = Color.FromArgb(password.BackColor.R - 30, password.BackColor.G - 30, password.BackColor.B - 30);
+            //password.BackColor = Color.FromArgb(password.BackColor.R - 30, password.BackColor.G - 30, password.BackColor.B - 30);
             password.BorderStyle = BorderStyle.FixedSingle;
-            lPassword.ForeColor = Color.FromArgb(lPassword.ForeColor.R - 50, lPassword.ForeColor.G - 50, lPassword.ForeColor.B - 50);
+            //lPassword.ForeColor = Color.FromArgb(lPassword.ForeColor.R - 50, lPassword.ForeColor.G - 50, lPassword.ForeColor.B - 50);
         }
 
         private void nomCompte_MouseClick(object sender, MouseEventArgs e)
