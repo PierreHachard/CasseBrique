@@ -95,7 +95,7 @@
             this.btnInscription.Location = new System.Drawing.Point(36, 389);
             this.btnInscription.Name = "btnInscription";
             this.btnInscription.Size = new System.Drawing.Size(194, 38);
-            this.btnInscription.TabIndex = 3;
+            this.btnInscription.TabIndex = 4;
             this.btnInscription.Text = "Inscription";
             this.btnInscription.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.btnInscription.UseVisualStyleBackColor = false;
@@ -119,7 +119,7 @@
             this.btnConnexion.Location = new System.Drawing.Point(36, 321);
             this.btnConnexion.Name = "btnConnexion";
             this.btnConnexion.Size = new System.Drawing.Size(194, 38);
-            this.btnConnexion.TabIndex = 4;
+            this.btnConnexion.TabIndex = 3;
             this.btnConnexion.Text = "Connexion";
             this.btnConnexion.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.btnConnexion.UseVisualStyleBackColor = false;
