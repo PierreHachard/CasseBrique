@@ -56,6 +56,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\BitmapScore.cs" />
     <Compile Include="ViewModel\PictureBarre.cs">
       <SubType>Component</SubType>
@@ -98,14 +103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -119,18 +119,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\cassebrique_fond.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\darkgreen.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BrickBreaker.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bbLogo.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\BrickBreakerFull.jpg" />
