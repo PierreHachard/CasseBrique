@@ -75,7 +75,6 @@
             this.nomCompte.Name = "nomCompte";
             this.nomCompte.Size = new System.Drawing.Size(228, 29);
             this.nomCompte.TabIndex = 1;
-            this.nomCompte.MouseClick += new System.Windows.Forms.MouseEventHandler(this.nomCompte_MouseClick);
             this.nomCompte.Enter += new System.EventHandler(this.nomCompte_Enter);
             this.nomCompte.Leave += new System.EventHandler(this.nomCompte_Leave);
             // 
