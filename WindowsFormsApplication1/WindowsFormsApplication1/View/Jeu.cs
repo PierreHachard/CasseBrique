@@ -63,7 +63,7 @@ namespace CasseBrique
             pictureBox4.Hide();
 
             this.accueil = accueil;
-            this.accueil.Visible = false;
+            /*this.accueil.Visible = false;*/
             niveau1 = new Niveau(niveau);
         }
 
