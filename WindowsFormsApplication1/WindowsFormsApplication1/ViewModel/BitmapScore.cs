@@ -12,6 +12,8 @@ namespace CasseBrique
     {
         private Bitmap[] bitScore = new Bitmap[10];
 
+
+        //initialise un tableau d'image
         public BitmapScore()
         {
             for(int i =0; i< 10; i++)
@@ -20,6 +22,8 @@ namespace CasseBrique
             }
         }
 
+
+        //Permet l'affiche du score sous un format "retro"
         public void convertToBitmap(int nombre, PictureBox b1, PictureBox b2,PictureBox b3)
         {
             int unite = nombre % 10;

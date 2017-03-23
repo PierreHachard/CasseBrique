@@ -182,9 +182,12 @@ namespace CasseBrique
                 return 5;
             return 0;
         }
-       
+
+
+       // relance la partie après la perte d'une vite
         public void ResetGame()
         {
+            //remet la balle à son état initial
             balle.Location = new System.Drawing.Point(265, 568);
             balle.Size = new System.Drawing.Size(12, 12);
             balle.Centre = balle.Location;
@@ -198,9 +201,12 @@ namespace CasseBrique
 
         public void GameOver()
         {
+            //remet la balle à son état initial
             balle.Location = new System.Drawing.Point(265, 568);
             balle.Size = new System.Drawing.Size(12, 12);
             balle.Centre = balle.Location;
+
+            //enregistrement du highscore
             if (Accueil.highscore < score)
             {
                 Accueil.highscore = score;
@@ -217,11 +223,15 @@ namespace CasseBrique
             pictureBox1.Show();
             pictureBox4.Show();
             viesRestantes = 3;
+            //stop le mouvement de la balle
             mouvementBalle.Enabled = false;
+            //remet au niveau 1 en cas de defaite
             niveau =  1;
             niveau1 = new Niveau(niveau);
+            //remet le score à 0 
             score = 0;
             //label1.Text = "Score : " + score;
+            //affiche le score  en image
             scoreb.convertToBitmap(score, pictureBox5, pictureBox6, pictureBox7);
             Refresh();
 
@@ -229,6 +239,7 @@ namespace CasseBrique
 
         public void nextLevel()
         {
+            //passe au niveau suivant
             mouvementBalle.Enabled = false;
             balle.Location = new System.Drawing.Point(265, 568);
             balle.Size = new System.Drawing.Size(12, 12);
@@ -258,7 +269,7 @@ namespace CasseBrique
             //Cursor.Hide();
             //Cursor.Current = null;
         }
-
+    
         private void Jeu_MouseLeave(object sender, EventArgs e)
         {
             //Cursor.Show();

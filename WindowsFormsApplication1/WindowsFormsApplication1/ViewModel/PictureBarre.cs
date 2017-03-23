@@ -28,6 +28,8 @@ namespace CasseBrique
 
         }
 
+
+        //permet de faire deplacer la barre
         public void deplacerBarre(int sourisX, Jeu j)
         {
             if (sourisX <= this.Width / 2)
@@ -40,6 +42,7 @@ namespace CasseBrique
             }
         }
 
+        //change l'angle de la balle en fonction de l'endroit ou elle tape sur barre
         public int angleRenvoieBalle(Pictureballe balle)
         {
             Point p0 = this.centre;
