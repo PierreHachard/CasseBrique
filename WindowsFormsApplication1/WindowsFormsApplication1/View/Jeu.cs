@@ -12,8 +12,10 @@ using CasseBrique.ViewModel;
 
 namespace CasseBrique
 {
+
     public partial class Jeu : Form
     {
+
         public static int BORDER_SIZE = 20;
         private Niveau niveau1;
         private Accueil accueil;
@@ -70,6 +72,7 @@ namespace CasseBrique
         private void Jeu_Load(object sender, EventArgs e)
         {
             label2.Text = "Highscore : " + Accueil.highscore;
+            Cursor.Clip = this.Bounds;
             Cursor.Hide();
         }
 
@@ -78,6 +81,7 @@ namespace CasseBrique
         private void Jeu_FormClosed(object sender, FormClosedEventArgs e)
         {
             Cursor.Show();
+            Cursor.Clip = new Rectangle(0,0,50000,50000);
             this.accueil.Visible = true;
         }
 
@@ -92,6 +96,7 @@ namespace CasseBrique
 
             // enlève le curseur 
             //Cursor.Current = null;
+            Cursor.Clip = this.Bounds;
 
             pictureBarre1.deplacerBarre(e.X, this);
             if (mouvementBalle.Enabled == false)
