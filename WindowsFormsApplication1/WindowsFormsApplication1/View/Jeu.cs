@@ -36,8 +36,6 @@ namespace CasseBrique
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             SetStyle(System.Windows.Forms.ControlStyles.AllPaintingInWmPaint, true);
-            //this.TopMost = true;
-            //this.FormBorderStyle = FormBorderStyle.;
 
             //La balle
             balle.Location = new System.Drawing.Point(265, 568);
@@ -72,6 +70,7 @@ namespace CasseBrique
             label2.Text = "Highscore : " + Accueil.highscore;
             Cursor.Clip = this.Bounds;
             Cursor.Hide();
+            Cursor.Clip = this.Bounds;
         }
 
 
@@ -157,22 +156,22 @@ namespace CasseBrique
             if (niveau1.ToucherBrique(balle.Centre, ref tmp, niveau1.NumeroNiveau, g))
             {
                 score += 5;
-                if (balle.Centre.Y > tmp.Y && balle.Centre.Y < tmp.Y + Brick.largeur && tmp.X + Brick.longueur /2 > balle.Centre.X)
+                if (balle.Centre.Y > tmp.Y && balle.Centre.Y < tmp.Y + Brick.largeur && tmp.X + Brick.longueur / 2 > balle.Centre.X && balle.compteurX == 0)
                 {
                     hit = 3;
                     return 3;
                 }
-                if (balle.Centre.Y > tmp.Y && balle.Centre.Y < tmp.Y + Brick.largeur && tmp.X + Brick.longueur / 2 < balle.Centre.X)
+                if (balle.Centre.Y > tmp.Y && balle.Centre.Y < tmp.Y + Brick.largeur && tmp.X + Brick.longueur / 2 < balle.Centre.X && balle.compteurX == 1)
                 {
                     hit = 4;
                     return 4;
                 }
-                if (balle.Centre.X > tmp.X && balle.Centre.X < tmp.X + Brick.longueur && tmp.Y + Brick.largeur / 2 < balle.Centre.Y)
+                if (balle.Centre.X > tmp.X && balle.Centre.X < tmp.X + Brick.longueur && tmp.Y + Brick.largeur / 2 < balle.Centre.Y && balle.compteurY == 0)
                 {
                     hit = 2;
                     return 2;
                 }
-                if (balle.Centre.X > tmp.X && balle.Centre.X < tmp.X + Brick.longueur && tmp.Y + Brick.largeur / 2 > balle.Centre.Y)
+                if (balle.Centre.X > tmp.X && balle.Centre.X < tmp.X + Brick.longueur && tmp.Y + Brick.largeur / 2 > balle.Centre.Y && balle.compteurY == 1)
                 {
                     hit = 1;
                     return 1;

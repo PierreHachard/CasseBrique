@@ -167,7 +167,7 @@
             this.panel1.Location = new System.Drawing.Point(971, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(254, 659);
-            this.panel1.TabIndex = 13;
+            this.panel1.TabIndex = 0;
             this.panel1.TabStop = true;
             // 
             // accueilFond
