@@ -59,7 +59,7 @@
             this.lUsername.Margin = new System.Windows.Forms.Padding(0);
             this.lUsername.Name = "lUsername";
             this.lUsername.Size = new System.Drawing.Size(109, 20);
-            this.lUsername.TabIndex = 1;
+            this.lUsername.TabIndex = 0;
             this.lUsername.Text = "Username";
             this.lUsername.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -67,9 +67,9 @@
             // 
             this.nomCompte.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.nomCompte.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nomCompte.CausesValidation = false;
             this.nomCompte.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Bold);
             this.nomCompte.ForeColor = System.Drawing.SystemColors.Info;
-            this.nomCompte.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.nomCompte.Location = new System.Drawing.Point(18, 125);
             this.nomCompte.Margin = new System.Windows.Forms.Padding(0);
             this.nomCompte.Name = "nomCompte";
@@ -135,7 +135,7 @@
             this.lPassword.Margin = new System.Windows.Forms.Padding(0);
             this.lPassword.Name = "lPassword";
             this.lPassword.Size = new System.Drawing.Size(89, 20);
-            this.lPassword.TabIndex = 10;
+            this.lPassword.TabIndex = 0;
             this.lPassword.Text = "Password";
             this.lPassword.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -168,6 +168,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(254, 659);
             this.panel1.TabIndex = 13;
+            this.panel1.TabStop = true;
             // 
             // accueilFond
             // 
